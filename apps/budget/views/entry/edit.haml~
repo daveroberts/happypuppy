@@ -1,0 +1,4 @@
+- form_tag({:controller=>"entry", :action=>"update", :id=>@entry.id}) do
+  %div= render :partial => "entry"
+  %p
+    .entry= submit_tag 'Update entry'

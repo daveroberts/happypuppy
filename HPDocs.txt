@@ -1,0 +1,10 @@
+__default_render_engine__
+__default_app__
+
+APPNAME
+$_ENV["app"]->root()
+CONTROLLERNAME
+DOCROOT
+
+$__app_instance
+$__controller_instance

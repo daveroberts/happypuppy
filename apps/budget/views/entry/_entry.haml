@@ -1,0 +1,21 @@
+%p
+  %label{:for=>"Description"} Description
+  .entry= text_field(:entry, "description")
+%p
+  %label{:for=>"Amount"} Amount
+  .entry= text_field(:entry, :amount, {:size=>8})
+%p
+  %label{:for=>"Date"} Date
+  .entry= simple_cal_input('entry[date]', entry.date)
+%p
+  %label{:for=>"Tag"} Tag
+  .entry= select(:entry, :tag_id, Tag.find(:all, :order=>'name').collect{|t|[t.name, t.id]}, :include_blank => true)
+%p
+  %label{:for=>"Transfer"}Transfer?
+  .entry= check_box(:entry, :transfer)
+%fieldset
+  %legend Charged to
+  - for person in Person.find(:all)
+    %p
+      %label{:for=>person.name}= person.name
+      .entry= check_box_tag "entry[person_ids][]", person.id, @entry.people.include?(person)

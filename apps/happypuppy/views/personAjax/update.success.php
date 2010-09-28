@@ -1,0 +1,1 @@
+<?=$result?><?=render('personAjax/_person', 'person', $person)?>
