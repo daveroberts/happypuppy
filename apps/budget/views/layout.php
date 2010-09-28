@@ -35,7 +35,7 @@
 </head>
 <body>
 <div>
-	<h1 id="top">Cets 3.7 Debug Menu</h1>
+	<h1 id="top">This is new</h1>
 	<div id="topNav">
 		<ul>
 			<li><?=link_to("People", "/person")?></li>
