@@ -1,2 +1,0 @@
-<p>This is a sample 404 page.</p>
-<p>Alternatively, you can use a static 404.html page by unsetting the __404_controller__ and __404_action__ variables in HappyPuppy.php  This way, HappyPuppy will load the file defined by the __404__ variable</p>

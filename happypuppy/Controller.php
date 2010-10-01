@@ -1,18 +1,16 @@
 <?
 
 namespace HappyPuppy;
-abstract class Controller
+class Controller
 {
 	var $name = '';
 	var $app_instance = '';
-	var $defaultAction = '';
 	var $title = '';
 	function __construct($app_instance, $name){
 		$this->app_instance = $app_instance;
 		$this->name = $name;
 		$this->title = $app_instance->title;
 	}
-	public abstract function __init();
 	public function __baseinit(){
 		
 	}
@@ -39,13 +37,13 @@ abstract class Controller
 		if ($layout_template != null){ $this->layout_template = $layout_template; }
 		if ($view_template != null){ $this->view_template = $view_template; }
 	}
-	public function redirect_to_app_url($app_url)
+	public function redirect_to($app_url)
 	{
 		$this->redirect_to_raw_url(\rawurl_from_appurl($app_url));
 	}
 	public function redirect_to_action($action)
 	{
-		$this->redirect_to_url(\appurl_for_action($action));
+		$this->redirect_to_raw_url(\rawurl_from_action($action));
 	}
 	public function redirect_to_raw_url($raw_url)
 	{
@@ -95,6 +93,7 @@ abstract class Controller
   		{
   			if ($method->class == 'HappyPuppy\Controller'){ continue; }
   			if ($method->name == '__init'){ continue; }
+  			if ($method->name == 'defaultAction'){ continue; }
   			// Controller = 10
   			$controller_name = substr($method->class, 0, strlen($method->class)-10);
   			$slashpos = strpos($controller_name, '\\');
@@ -129,13 +128,21 @@ abstract class Controller
   			{
 				$routes[] = new Route($this->app_instance->name, $controller_name, $method_name, $params, 'GET');
 				// if this is the default action, add a route
-				if ($method_name == $this->defaultAction)
+				$defaultAction = '';
+				if (method_exists($this, "defaultAction")){
+					$defaultAction = $this->defaultAction();
+				}
+				if ($method_name == $defaultAction)
   				{
 					$route = new Route($this->app_instance->name, $controller_name, $method_name, $params);
 					$route->omit_action = true;
 					$routes[] = $route;
 					// if this is also the default controller, add yet another route
-					if ($this->app_instance->defaultController == $controller_name)
+					$defaultController = '';
+					if (method_exists($this->app_instance, "defaultController")){
+						$defaultController = $this->app_instance->defaultController();
+					}
+					if ($defaultController == $controller_name)
 					{
 						$route = new Route($this->app_instance->name, $controller_name, $method_name, $params);
 						$route->omit_action = true;

@@ -11,7 +11,7 @@
 		</thead>
 		<tbody>
 	<?php foreach($app_route_list as $route): ?>
-		<tr>
+		<tr class="<?= cycle("even", "odd")?>">
 			<td><?= link_to_rawurl($route->GetRouteString(), $route->GetRouteString()); ?></td>
 			<td><?=$route->controller?></td>
 			<td><?=$route->action?></td>

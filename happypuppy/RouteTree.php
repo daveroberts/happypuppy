@@ -15,7 +15,8 @@
 				require_once($_ENV['docroot'].'apps\\'.$app.'\\'.$app.'Application.php');
 				$app_classname = $app.'\\'.$app.'Application';
 				$app_instance = new $app_classname($app);
-				$app_instance->__init();
+				// can't call init here.  What if a database reference is created?  That should be global
+				//$app_instance->__init();
 				$app_instance->AddRoutesToList($this);
 			}
 		}
@@ -52,6 +53,10 @@
 			for($p = 0; $p < count($urlparts); $p++)
 			{
 				$urlpart = $urlparts[$p];
+				$dot = strpos($urlpart, '.');
+				if ($dot){
+					$urlpart = substr($urlpart, 0, $dot);
+				}
 				$nextLevelSubtrees = array();
 				foreach($matchingSubtrees as $tree)
 				{
@@ -80,7 +85,7 @@
 				}
 			}
 			$num_routes = count($matchingRoutes);
-			if ($num_routes > 1){ throw new Exception("Multiple Routes match"); }
+			if ($num_routes > 1){ throw new \Exception("Multiple Routes match"); }
 			if ($num_routes == 0){ return null; }
 			return $matchingRoutes[0];
 		}

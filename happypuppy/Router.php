@@ -20,6 +20,7 @@
 		{
 			Router::LoadApplication($route);
 			Router::LoadController($route);
+			$_ENV["controller"]->responds_to = Route::GetRespondsTo($url);
 			$_ENV["controller"]->run_before_filters($route->action);
 			ob_start();
 			if (method_exists($_ENV["controller"], $route->PHPAction()))
@@ -65,7 +66,9 @@
 			$app_classname = $route->app.'\\'.$route->appClassname();
 			$_ENV["app"] = new $app_classname($route->app);
 			$_ENV["app"]->__baseinit();
-			$_ENV["app"]->__init();
+			if(method_exists($_ENV["app"], "__init")){
+				$_ENV["app"]->__init();
+			}
 		}
 		private static function LoadController($route)
 		{
@@ -74,7 +77,9 @@
 			$controller_classname = $route->app.'\\'.$route->controllerClassname();
 			$_ENV["controller"] = new $controller_classname($_ENV["app"], substr($route->controllerClassname(), 0, strlen($route->controllerClassname())-10));
 			$_ENV["controller"]->__baseinit();
-			$_ENV["controller"]->__init();
+			if(method_exists($_ENV["controller"], "__init")){
+				$_ENV["controller"]->__init();
+			}
 		}
 	}
 	

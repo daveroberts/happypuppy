@@ -2,9 +2,9 @@
 namespace budget;
 class PersonController extends \HappyPuppy\Controller
 {
-	function __init()
-	{
-		$this->defaultAction = "list";
+	function defaultAction(){ return "list"; }
+	function __init(){
+		$this->currentNav = "people";
 	}
 	function _list()
 	{

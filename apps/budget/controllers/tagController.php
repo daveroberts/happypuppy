@@ -3,8 +3,9 @@
 namespace budget;
 class TagController extends \HappyPuppy\Controller
 {
+	function defaultAction(){ return "list"; }
 	function __init(){
-		$this->defaultAction = "list";
+		$this->currentNav = "tags";
 	}
 	function _list() {
 		$this->tags = Tag::All("name");
@@ -25,7 +26,7 @@ class TagController extends \HappyPuppy\Controller
 		if ($success)
 		{
 			$this->flash = "New Tag Added";
-			$this->redirect_to_app_url("/tag");
+			$this->redirect_to("/tag");
 		} else {
 			$this->view_template = "tag/list";
 			$this->flash = "Tag was not able to be saved: ".$error;
@@ -54,7 +55,7 @@ class TagController extends \HappyPuppy\Controller
 		$error_msg = '';
 		$success = $this->tag->save($error_msg);
 		if ($success) {
-			$this->redirect_to_app_url("/tag");
+			$this->redirect_to("/tag");
 		} else {
 			$this->view_template = "tag/edit";
 			$this->flash = "Could not save new tag: ".$error_msg;
@@ -64,7 +65,7 @@ class TagController extends \HappyPuppy\Controller
 		$this->tag = Tag::Get($tag_id);
 		if (isset($_POST["delete_id"])) {
 			$this->tag->destroy();
-			$this->redirect_to_app_url("/tag");
+			$this->redirect_to("/tag");
 		}
 	}
 }

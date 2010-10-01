@@ -1,7 +1,0 @@
-<?
-
-class docController extends Controller
-{
-}
-
-?>

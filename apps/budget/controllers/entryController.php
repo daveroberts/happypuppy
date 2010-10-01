@@ -3,9 +3,6 @@
 namespace budget;
 class EntryController extends \HappyPuppy\Controller
 {
-	function __init(){
-		$this->defaultAction = "";
-	}
 	function create(){
 		$this->entry = new Entry();
 		$this->entry->build($_POST["Entry"]);
@@ -17,11 +14,11 @@ class EntryController extends \HappyPuppy\Controller
 			if ($this->entry->bank_account == null)
 			{
 				$person_id = $this->entry->people[0]->id;
-				$this->redirect_to_app_url("/person/$person_id/account/list");
+				$this->redirect_to("/person/$person_id/account/list");
 			}
 			else
 			{
-				$this->redirect_to_app_url('/account/cashflow/'.$this->entry->bank_account->id);
+				$this->redirect_to('/account/cashflow/'.$this->entry->bank_account->id);
 			}
 		} else {
 			$this->view_template = "account/cashflow";
@@ -41,7 +38,7 @@ class EntryController extends \HappyPuppy\Controller
 		$success = $this->entry->save($error_msg);
 		if ($success)
 		{
-			$this->redirect_to_app_url('/account/cashflow/'.$this->entry->bank_account->id);
+			$this->redirect_to('/account/cashflow/'.$this->entry->bank_account->id);
 		}
 		else
 		{
@@ -55,7 +52,7 @@ class EntryController extends \HappyPuppy\Controller
 		{
 			$bank_account_id = $this->entry->bank_account->id;
 			$this->entry->destroy();
-			$this->redirect_to_app_url("/account/cashflow/$bank_account_id");
+			$this->redirect_to("/account/cashflow/$bank_account_id");
 		}
 	}
 	/**

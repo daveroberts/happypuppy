@@ -34,10 +34,22 @@
 			$tok = strtok($routestring, "/");
 			while ($tok !== false)
 			{
+				$dot = strpos($tok, ".");
+				if ($dot){
+					$tok = substr($tok, 0, $dot);
+				}
 				$parts[] = $tok;
 				$tok = strtok("/");
 			}
 			return $parts;
+		}
+		public static function GetRespondsTo($url)
+		{
+			$parts = split('[/]', $url);
+			$lastpart = end($parts);
+			$dot = strpos($lastpart, ".");
+			if (!$dot){ return '';}
+			return substr($lastpart, $dot + 1);
 		}
 		function PHPAction()
 		{
@@ -67,6 +79,10 @@
 			$tok = strtok($url, "/");
 			while ($tok !== false)
 			{
+				$dot = strpos($tok, '.');
+				if ($dot){
+					$tok = substr($tok, 0, $dot);
+				}
 				$url_parts[] = $tok;
 				$tok = strtok("/");
 			}

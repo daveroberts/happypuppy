@@ -3,10 +3,11 @@
 namespace budget;
 class AccountController extends \HappyPuppy\Controller
 {
-	function __init()
-	{
-		$this->defaultAction = "list";
+	function defaultAction(){ return "list"; }
+	function __init(){
+		$this->currentNav = "accounts";
 	}
+
 	function all()
 	{
 		$this->title .= " - List of Accounts for everybody";
@@ -24,17 +25,17 @@ class AccountController extends \HappyPuppy\Controller
 		$new_account = new BankAccount();
 		$this->new_account_form = new \HappyPuppy\form($new_account);
 	}
-	
+
 	function create(){
     	$this->newaccount = new BankAccount();
 		$this->newaccount->build($_POST["BankAccount"]);
 		$error = '';
 		$success = $this->newaccount->save($error);
-		
+
 		if ($success)
 		{
 			$this->flash = "New Account Added";
-			$this->redirect_to_app_url("/person/".$this->newaccount->owner->id."/account/list");
+			$this->redirect_to("/person/".$this->newaccount->owner->id."/account/list");
 		} else {
 			$this->view_template = "account/all";
 			$this->flash = "Account was not able to be created: ".$error;
@@ -42,15 +43,15 @@ class AccountController extends \HappyPuppy\Controller
 			$this->accounts = BankAccount::All("name");
 		}
 	}
-	
+
 	/**
 	* !Route GET, /account/cashflow
 	*/
 	function noaccountcashflow()
 	{
-		$this->redirect_to_app_url("/account/none");
+		$this->redirect_to("/account/none");
 	}
-	
+
 	function cashflow($account_id)
 	{
 		$this->account = BankAccount::Get($account_id);
@@ -63,13 +64,13 @@ class AccountController extends \HappyPuppy\Controller
 	{
 		$this->entries = Entry::Find(array("conditions"=>"charged_to=0"));
 	}
-	
+
 	/**
 	* !Route GET, /account/cashflow/chart/$account_id
 	*/
 	function cashFlowChart($account_id){
 		$this->account_id = $account_id;
-		
+
 		/*$account = BankAccount::Get($account_id);
 		$months = array();
 		$bar_data = array();
@@ -81,7 +82,7 @@ class AccountController extends \HappyPuppy\Controller
 			$bar_data[] = $balance;
 			$months[] = date('M', $date);
 		}
-		
+
 		$this->chart = new \gLineChart(720,200);
 		$this->chart->addDataSet($bar_data);
 		$this->chart->setLegend(array("Balance over Time"));
@@ -106,28 +107,28 @@ class AccountController extends \HappyPuppy\Controller
 			if ($balance > $max) { $max = $balance; }
 			$data[] = $balance;
 		}
-		
+
 		/*$title = new \title( "My Title ".date("D M d Y") );
-		
+
 		$bar = new \bar();
-		
-		
+
+
 		$bar->set_values( $bar_data );
-		
+
 		$chart = new \open_flash_chart();
 		$chart->set_title( $title );
 		$chart->add_element( $bar );
-		
-		$y = new \y_axis(); 
+
+		$y = new \y_axis();
 		$y->set_range( 0, $max * 1.1 );
-		
+
 		$chart->set_y_axis($y);
-		
+
 		$this->render_text($chart->toString());*/
-		
+
 		$chart = new \open_flash_chart();
 		$chart->set_title( new \title( 'Area Chart' ) );
-		
+
 		$d = new \dot();
 		$d->colour('#9C0E57')->size(7);
 
@@ -165,21 +166,13 @@ class AccountController extends \HappyPuppy\Controller
 
 		$this->render_text($chart->toPrettyString());
 	}
-	
+
 	function delete($account_id){
 		$this->account = BankAccount::Get($account_id);
 		if (isset($_POST["delete_id"])) {
 			$this->account->destroy(true);
-			$this->redirect_to_app_url("/account/all");
+			$this->redirect_to("/account/all");
 		}
 	}
 }
-/*
-  def delete
-    @account = BankAccount.find params[:id]
-    @account.destroy
-    redirect_to :action=>'list'
-  end
-
-*/
 ?>

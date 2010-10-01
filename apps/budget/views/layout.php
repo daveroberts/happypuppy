@@ -23,10 +23,11 @@
 		
 		.highlightRow { cursor: pointer; }
 		#top{ background-color: <?=$topcolor?>; }
-		#topNav{ border-top: 3px solid black; }
+		#topNav{ border-bottom: 3px solid black; background-color: <?=$topcolor?>; }
 		#topNav ul { margin: 0; list-style-type: none; }
 		#topNav ul li{ display: inline; list-style-type: none; }
-		#topNav ul li a{ font-weight: bold; color: black; background-color: <?=$topcolor?>; position: relative; top: 5px; padding: 5px; border-left: 3px solid black; border-right: 3px solid black; border-bottom: 3px solid black; border-top: 3px solid <?=$topcolor?>; margin-left: 0.5em; -moz-border-bottom-left-radius: 10px; border-bottom-left-radius: 10px; -moz-border-bottom-right-radius: 10px; border-bottom-right-radius: 10px; }
+		#topNav ul li a{ font-weight: bold; color: black; background-color: #F0F0F0; position: relative; top: -5px; padding: 5px; border-left: 3px solid black; border-right: 3px solid black; border-top: 3px solid black; margin-left: 0.5em; -moz-border-top-left-radius: 10px; border-top-left-radius: 10px; -moz-border-top-right-radius: 10px; border-top-right-radius: 10px; }
+		#topNav ul li a.current{ background-color: white; border-bottom: 3px solid white; }
 		#topNav ul li a:hover{ text-decoration: none; }
 		
 		#content{ margin: 30px 10px 10px 10px; }
@@ -38,9 +39,9 @@
 	<h1 id="top">This is new</h1>
 	<div id="topNav">
 		<ul>
-			<li><?=link_to("People", "/person")?></li>
-			<li><?=link_to("Accounts", "/account/all")?></li>
-			<li><?=link_to("Tags", "/tag")?></li>
+			<li><?=link_to("People", "/person", array("class"=>$currentNav=="people" ? "current" : ""))?></li>
+			<li><?=link_to("Accounts", "/account/all", array("class"=>$currentNav=="accounts" ? "current" : ""))?></li>
+			<li><?=link_to("Tags", "/tag", array("class"=>$currentNav=="tags" ? "current" : ""))?></li>
 		</ul>
 	</div>
 </div>

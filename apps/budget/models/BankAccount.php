@@ -1,7 +1,6 @@
 <?
 
 namespace budget;
-require_once("Person.php");
 
 class BankAccount extends \HappyPuppy\dbobject
 {

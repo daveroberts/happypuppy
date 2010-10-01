@@ -19,13 +19,4 @@ function mon($amount)
 		return '$'.number_format($amount, 2, '.', ',');
 	}
 }
-function cycle($first, $second)
-{
-	static $cycle_even_odd = 0;
-	$cycle_even_odd++;
-	$cycle_even_odd = $cycle_even_odd % 2;
-	if ($cycle_even_odd == 0){ return $first; }
-	return $second;
-}
-  
 ?>

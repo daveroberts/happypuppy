@@ -78,4 +78,24 @@ function rawurl_from_app($app, $controller, $action)
 	return $url;
 }
 
+function setflash($str){
+	$_SESSION["flash"] = $str;
+}
+function hasflash(){
+	return isset($_SESSION["flash"]);
+}
+function getflash($remove=true){
+	$retval = $_SESSION["flash"];
+	if ($remove){ unset($_SESSION["flash"]); }
+	return $retval;
+}
+
+function cycle($first, $second)
+{
+	static $cycle_even_odd = 0;
+	$cycle_even_odd++;
+	$cycle_even_odd = $cycle_even_odd % 2;
+	if ($cycle_even_odd == 0){ return $first; }
+	return $second;
+}
 ?>

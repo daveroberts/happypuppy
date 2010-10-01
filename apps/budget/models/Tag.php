@@ -4,7 +4,7 @@ class Tag extends \HappyPuppy\dbobject
 {
 	function __construct()
 	{
-		parent::__construct("tag", __NAMESPACE__);
+		parent::__construct("tag");
 		parent::has_many("entries", "date", "\\budget\\Entry", "entry", "tag_id");
 		parent::isUniqueField("name");
 	}

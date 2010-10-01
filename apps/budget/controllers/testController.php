@@ -4,7 +4,6 @@
 namespace budget;
 class testController extends \HappyPuppy\Controller
 {
-	public function __init(){}
 	public function test()
 	{
 		print('<pre>');

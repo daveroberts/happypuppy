@@ -3,11 +3,7 @@
 namespace happypuppytools;
 class RoutesController extends \HappyPuppy\Controller
 {
-	function __init()
-	{
-		$this->defaultAction = "list";
-	}
-
+	function defaultAction(){ return "list"; }
 	function _list()
 	{
 		$routetree = \HappyPuppy\Cache::get("routetree");

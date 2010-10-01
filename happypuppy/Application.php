@@ -1,10 +1,9 @@
 <?php
 	namespace HappyPuppy;
-	abstract class Application
+	class Application
 	{
 		var $name;
 		var $customPrefix = '';
-		var $defaultController = '';
 		var $title = '';
 		function __construct($name)
 		{
@@ -16,7 +15,6 @@
 			$this->include_dir('views/helpers/*.php');
 			$this->include_dir('models/*.php');
 		}
-		public abstract function __init();
 		public function AddRoutesToList($route_tree)
 		{
 			if ($handle = opendir($_ENV['docroot'].'apps\\'.$this->name.'\\controllers'))
@@ -28,7 +26,8 @@
 					// Controller.php = 14 letters
 					$controller_class_name = $this->name.'\\'.substr($file, 0, strlen($file)-4);
 					$controller_instance = new $controller_class_name($this, substr($file, 0, strlen($file) - 14));
-					$controller_instance->__init();
+					// can't call init here.  This should be at runtime only
+					//$controller_instance->__init();
 					$controller_instance->AddRoutesToList($route_tree);
 				}
 				closedir($handle);

@@ -1,8 +1,8 @@
 <?php
 
 	$_ENV["config"] = array();
-	$_ENV["config"]["apps"] = array("blog", "wiki", "happypuppytools", "budget", "cool");
-	$_ENV["config"]["default_app"] = "blog";
+	$_ENV["config"]["apps"] = array("budget", "happypuppytools", "sample", "violations");
+	$_ENV["config"]["default_app"] = "sample";
 	$_ENV["config"]["debug_mode"] = true;
 	$_ENV["config"]["static_error_page"] = "error/error.php";
 	$_ENV["config"]["route_not_found_page"] = "error/404.php";

@@ -18,6 +18,11 @@ class HtmlHidden extends HtmlElement
 		$this->htmlOptions["value"] = $this->default_value;
 		return parent::toString();
 	}
+	
+	public static function make($name, $value){
+		$hid = new HtmlHidden($name, $value);
+		return $hid->toString();
+	}
 }
 
 ?>
