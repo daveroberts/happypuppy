@@ -5,7 +5,6 @@ class basicsController extends \HappyPuppy\Controller
 	//Notice we don't need an index function.  If it's blank don't even bother!
 	function defaultAction(){ return "index"; }
 	public function index(){}
-	public function test(){}
 	public function hello()
 	{
 		$this->render_text('Hello World - Simple text example');

@@ -39,7 +39,7 @@ class HappyPuppy
 		if ($_ENV['config']["debug_mode"])
 		{
 			$provider = '\HappyPuppy\SqliteCacheProvider';
-			Cache::reportsTo(new $provider);
+			//Cache::reportsTo(new $provider);
 		}
 	}
 

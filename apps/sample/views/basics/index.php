@@ -1,5 +1,5 @@
 <h2>The Basics</h2>
-<p>All of these examples are in the 'basics' controller, found in /controllers/basicsController.php</p>
+<p>All of these examples are in the 'basics' controller, found in /apps/sample/controllers/basicsController.php</p>
 <div class="example">
 <p><?= link_to_action('Hello World', 'hello') ?></p>
 <pre>
@@ -41,8 +41,7 @@ The template /views/basics/simple.php looks like this:
 <pre>
 public function show($id)
 {
-  echo "Showing ".$id."  Try changing the URL";
-  $this-&gt;rendered = true;
+  $this-&gtrender_text("Showing ".$id."  Try changing the number 44 in the URL to the word test");
 }
 </pre>
 <p>Specifying parameters is easy</p>
@@ -54,7 +53,7 @@ public function show($id)
 public function showboth($one, $two)
 {
   echo "Arg #1: ($one) Arg #2: ($two)";
-  $this-&gt;rendered = true;
+  $this-&gt;text_only = true;
 }
 </pre>
 <p>Add as many arguments as you'd like</p>
@@ -85,7 +84,7 @@ public function blog($year, $month, $day, $title)
 <pre>
 public function redir()
 {
-  $this-&gt;redirect('/basics/error');
+  $this-&gt;redirect_to('/basics/error');
 }
 </pre>
 <p>Calling $this-&gt;redirect outputs a location header right away, stops processing and redirects the browser.</p>
@@ -99,7 +98,7 @@ public function altview()
   $this-&gt;view_template = 'views/basics/different.php';
 }
 </pre>
-<p>By default, /basics/altview would look for a template in views/basics/altview.php  This lets you specify a different view file</p>
+<p>By default, /basics/altview would look for a template in /app/sample/views/basics/altview.php  This lets you specify a different view file</p>
 </div>
 
 <div class="example">
@@ -110,7 +109,7 @@ public function altlayout()
   $this-&gt;layout_template = 'views/alternatelayout.php';
 }
 </pre>
-<p>The default layout template is views/layout.php  You can specify a different one</p>
+<p>The default layout template is views/layout.php  You can specify a different one here</p>
 </div>
 
 <div class="example">
