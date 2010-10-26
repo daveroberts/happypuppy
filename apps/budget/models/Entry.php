@@ -22,7 +22,6 @@ class Entry extends \HappyPuppy\dbobject
 		$this->has_one("tag");
 		$this->has_one("bank_account", "\\budget\\BankAccount", "bankaccount", "charged_to");
 	}
-	public static function getTablename(){ return "Entry"; }
 	function __set($name, $value)
 	{
 		$parent_call_success = true;

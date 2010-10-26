@@ -127,7 +127,7 @@ abstract class dbobject
 			$this->_relations->setRelation($name, $value);
 			return;
 		}
-		throw new Exception($name." is not a field or relation");
+		throw new \Exception($name." is not a field or relation");
 	}
 	public static function __callStatic($name, $args){
 		if (substr($name, 0, 6) == "FindBy")
@@ -164,13 +164,22 @@ abstract class dbobject
 		$obj = new $klass();
 		return $obj->buildAll($db_results);
 	}
-	public static function Find($args){
+	public static function Count($args, $debug = false){
 		$classname = get_called_class();
 		$dbobject = new $classname();
-		return $dbobject->pFind($args);
+		return $dbobject->pCount($args, $debug);
 	}
-	public function pFind($args){
-		return $this->_sqlFinder->find($args);
+	public function pCount($args, $debug = false){
+		$args["count"] = true;
+		return $this->_sqlFinder->find($args, $debug);
+	}
+	public static function Find($args, $debug = false){
+		$classname = get_called_class();
+		$dbobject = new $classname();
+		return $dbobject->pFind($args, $debug);
+	}
+	public function pFind($args, $debug = false){
+		return $this->_sqlFinder->find($args, $debug);
 	}
 	public static function FindBy($name, $val){
 		$classname = get_called_class();
@@ -241,7 +250,7 @@ abstract class dbobject
 			$sql = "SELECT * FROM ".$dbobject->tablename." t WHERE t.".$dbobject->pk."=".addslashes($pk_id);
 			$db_results = DB::query($sql);
 			if (count($db_results) == 0){ return null; }
-			$dbobject->buildFromDB($db_results[0]);
+			$dbobject->buildFromDB(reset($db_results));
 			return $dbobject;
 		}
 	}
@@ -251,7 +260,7 @@ abstract class dbobject
 		$sql = "SELECT TOP 1 * FROM ".$dbobject->tablename;
 		$db_results = DB::query($sql);
 		if (count($db_results) == 0){ return null; }
-		$dbobject->buildFromDB($db_results[0]);
+		$dbobject->buildFromDB(reset($db_results));
 		return $dbobject;
 	}
 	public static function All($sort_by = ''){

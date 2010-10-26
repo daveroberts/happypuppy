@@ -2,8 +2,9 @@
 namespace sample;
 class basicsController extends \HappyPuppy\Controller
 {
-	//Notice we don't need an index function.  If it's blank don't even bother!
 	function defaultAction(){ return "index"; }
+	// Happy Puppy now requires you have a method for each corresponding route
+	// even if it's empty
 	public function index(){}
 	public function hello()
 	{

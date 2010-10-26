@@ -8,19 +8,19 @@ class sqlFinder
 	{
 		$this->_dbo = $dbobject;
 	}
-	public function find($args)
+	public function find($args, $debug = false)
 	{
 		if ($args == null){ return $this->find_all(array()); }
 		if (is_int($args)){ return $this->find_by_id($args); }
 		if (is_array($args))
 		{
 			$all_ints = true;
-			foreach($args as $arg)
+			foreach($args as $k=>$v)
 			{
-				if (!is_int($arg)){ $all_ints = false; break; }
+				if (!is_int($k) || !is_int($v)){ $all_ints = false; break; }
 			}
 			if ($all_ints){ return $this->find_by_ids($args); }
-			return $this->find_all($args);
+			return $this->find_all($args, $debug);
 		}
 		return null;
 	}
@@ -33,7 +33,7 @@ class sqlFinder
 		$sql = "SELECT * FROM ".$this->_dbo->tablename." WHERE ".$this->_dbo->pk."=".addslashes($id);
 		$db_results = DB::query($sql);
 		if (count($db_results) == 0){ return null; }
-		$this->_dbo->buildFromDB($db_results[0]);
+		$this->_dbo->buildFromDB(reset($db_results));
 		return true;
 	}
 	private function find_by_ids($ids)
@@ -47,17 +47,20 @@ class sqlFinder
 		$sql .= ")";
 		$db_results = DB::query($sql);
 		if (count($db_results) == 0){ return null; }
-		$this->_dbo->buildFromDB($db_results[0]);
+		$this->_dbo->buildFromDB(reset($db_results));
 		return $this->_dbo;
 	}
-	private function find_all($args)
+	private function find_all($args, $debug = false)
 	{
 		$conditions = $args["conditions"];
+		$count = $args["count"];
 		$order = $args["order"];
 		$limit = $args["limit"];
 		$offset = $args["offset"];
 		$includes = $args["includes"];
-		$sql = "SELECT * FROM ".$this->_dbo->tablename." ";
+		$sql = "SELECT ";
+		if ($count != null){ $sql .= "COUNT(*) ";} else { $sql .= "* "; }
+		$sql .= " FROM ".$this->_dbo->tablename." ";
 		if ($conditions != null)
 		{
 			$sql .= " WHERE ".$conditions." ";
@@ -74,7 +77,12 @@ class sqlFinder
 		{
 			$sql .= " OFFSET ".$offset." ";
 		}
+		if ($debug){ return $sql; }
 		$db_results = DB::query($sql);
+		if ($count)
+		{
+			return reset(reset($db_results));
+		}
 		$obj_array = $this->_dbo->buildAll($db_results);
 		$pk_col = $this->_dbo->pk;
 		if ($includes != null)

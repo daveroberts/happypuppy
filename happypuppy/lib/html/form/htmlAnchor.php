@@ -1,7 +1,7 @@
 <?
 
 namespace HappyPuppy;
-require_once('HtmlElement.php');
+require_once('htmlElement.php');
 
 class HtmlAnchor extends HtmlElement
 {

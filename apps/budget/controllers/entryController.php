@@ -13,7 +13,8 @@ class EntryController extends \HappyPuppy\Controller
 			$this->flash = "New Entry Added";
 			if ($this->entry->bank_account == null)
 			{
-				$person_id = $this->entry->people[0]->id;
+				$person = reset($this->entry->people);
+				$person_id = $person->id;
 				$this->redirect_to("/person/$person_id/account/list");
 			}
 			else

@@ -132,7 +132,7 @@ class Controller
 				if (method_exists($this, "defaultAction")){
 					$defaultAction = $this->defaultAction();
 				}
-				if ($method_name == $defaultAction)
+				if (strcasecmp($method_name, $defaultAction) == 0)
   				{
 					$route = new Route($this->app_instance->name, $controller_name, $method_name, $params);
 					$route->omit_action = true;
@@ -142,7 +142,7 @@ class Controller
 					if (method_exists($this->app_instance, "defaultController")){
 						$defaultController = $this->app_instance->defaultController();
 					}
-					if ($defaultController == $controller_name)
+					if (strcasecmp($defaultController, $controller_name) == 0)
 					{
 						$route = new Route($this->app_instance->name, $controller_name, $method_name, $params);
 						$route->omit_action = true;

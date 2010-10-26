@@ -1,8 +1,8 @@
 <?
 namespace budget;
 
-require('/content/chart/php-ofc-library/open-flash-chart.php');
-require('/content/chart/gChart.php');
+//require('/content/chart/php-ofc-library/open-flash-chart.php');
+//require('/content/chart/gChart.php');
 
 class budgetApplication extends \HappyPuppy\Application
 {

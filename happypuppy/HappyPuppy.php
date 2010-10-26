@@ -2,8 +2,8 @@
 namespace HappyPuppy;
 require_once("config/config.php");
 require_once("lib/all.php");
+require_once("SimpleCache.php");
 require_once("Router.php");
-require_once("Cache.php");
 
 function run()
 {
@@ -51,6 +51,8 @@ class HappyPuppy
 	/* Process requests and dispatch */
 	public function dispatch_to($url)
 	{
+		// check first if they are requesting static content in an app folder, if so, redirect them there
+		Router::CheckForStaticContent($url);
 		$route = Router::URLToRoute($url);
 		if ($route != null)
 		{
