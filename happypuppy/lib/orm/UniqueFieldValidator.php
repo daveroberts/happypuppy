@@ -25,8 +25,9 @@ class UniqueFieldValidator
 		$obj_arr = $this->getObjArray($dbobject);
 		if (count($obj_arr) == 0){ return true; }
 		if (count($obj_arr) == 1){
-			$pk = $obj_arr[0]->pk;
-			if ($obj_arr[0]->$pk == $dbobject->$pk){
+			$obj = reset($obj_arr);
+			$pk = $obj->pk;
+			if ($obj->$pk == $dbobject->$pk){
 				return true;
 			}
 		}

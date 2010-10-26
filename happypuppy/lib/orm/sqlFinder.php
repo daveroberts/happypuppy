@@ -33,7 +33,7 @@ class sqlFinder
 		$sql = "SELECT * FROM ".$this->_dbo->tablename." WHERE ".$this->_dbo->pk."=".addslashes($id);
 		$db_results = DB::query($sql);
 		if (count($db_results) == 0){ return null; }
-		$this->_dbo->buildFromDB($db_results[0]);
+		$this->_dbo->buildFromDB(reset($db_results));
 		return true;
 	}
 	private function find_by_ids($ids)
@@ -47,7 +47,7 @@ class sqlFinder
 		$sql .= ")";
 		$db_results = DB::query($sql);
 		if (count($db_results) == 0){ return null; }
-		$this->_dbo->buildFromDB($db_results[0]);
+		$this->_dbo->buildFromDB(reset($db_results));
 		return $this->_dbo;
 	}
 	private function find_all($args)

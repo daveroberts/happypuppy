@@ -7,6 +7,7 @@ class Violation extends \HappyPuppy\dbobject
 		parent::__construct("violation");
 		parent::has_many("occurrences", "", "\\violations\\Occurrence", "occurrence", "violation_id");
 		parent::has_one("macro", "\\violations\\Macro", "macro", "macro_id");
+		parent::isUniqueField("macro_id");
 	}
 	public function isEmployeeViolation()
 	{

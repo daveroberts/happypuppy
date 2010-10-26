@@ -17,12 +17,12 @@
 		}
 		public function AddRoutesToList($route_tree)
 		{
-			if ($handle = opendir($_ENV['docroot'].'apps\\'.$this->name.'\\controllers'))
+			if ($handle = opendir($_ENV['docroot'].'apps/'.$this->name.'/controllers'))
 			{
 				while (false !== ($file = readdir($handle)))
 				{
 					if ($file == '.' || $file == '..' || substr($file, strlen($file)-14) != "Controller.php"){ continue; }
-					require_once($_ENV['docroot'].'apps\\'.$this->name.'\\controllers\\'.$file);
+					require_once($_ENV['docroot'].'apps/'.$this->name.'/controllers/'.$file);
 					// Controller.php = 14 letters
 					$controller_class_name = $this->name.'\\'.substr($file, 0, strlen($file)-4);
 					$controller_instance = new $controller_class_name($this, substr($file, 0, strlen($file) - 14));

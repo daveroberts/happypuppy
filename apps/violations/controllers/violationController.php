@@ -34,6 +34,7 @@ class ViolationController extends \HappyPuppy\Controller
 	}
 	function employee($id){
 		$this->violation = Violation::Get($id);
+		if ($this->violation == null){ $this->view_template = "violation/invalid"; return; }
 		$new_occurrence = new EmployeeOccurrence();
 		$this->f = new \HappyPuppy\form($new_occurrence);
 	}

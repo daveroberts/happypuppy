@@ -110,7 +110,7 @@
 		}
 		function controllerClassname()
 		{
-			return $this->controller."Controller";
+			return ucwords($this->controller)."Controller";
 		}
 		private function GetCustomRouteString()
 		{

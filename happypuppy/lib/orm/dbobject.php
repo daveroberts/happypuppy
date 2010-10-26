@@ -127,7 +127,7 @@ abstract class dbobject
 			$this->_relations->setRelation($name, $value);
 			return;
 		}
-		throw new Exception($name." is not a field or relation");
+		throw new \Exception($name." is not a field or relation");
 	}
 	public static function __callStatic($name, $args){
 		if (substr($name, 0, 6) == "FindBy")
@@ -241,7 +241,7 @@ abstract class dbobject
 			$sql = "SELECT * FROM ".$dbobject->tablename." t WHERE t.".$dbobject->pk."=".addslashes($pk_id);
 			$db_results = DB::query($sql);
 			if (count($db_results) == 0){ return null; }
-			$dbobject->buildFromDB($db_results[0]);
+			$dbobject->buildFromDB(reset($db_results));
 			return $dbobject;
 		}
 	}
@@ -251,7 +251,7 @@ abstract class dbobject
 		$sql = "SELECT TOP 1 * FROM ".$dbobject->tablename;
 		$db_results = DB::query($sql);
 		if (count($db_results) == 0){ return null; }
-		$dbobject->buildFromDB($db_results[0]);
+		$dbobject->buildFromDB(reset($db_results));
 		return $dbobject;
 	}
 	public static function All($sort_by = ''){

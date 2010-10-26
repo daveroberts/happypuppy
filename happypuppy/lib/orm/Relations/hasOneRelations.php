@@ -30,7 +30,7 @@ class HasOneRelations extends RelationCollection
 		$this->_cached_values[$name] = null;
 		if (count($db_results) == 1)
 		{
-			$obj->buildFromDB($db_results[0]);
+			$obj->buildFromDB(reset($db_results));
 			$this->_cached_values[$name] = $obj;
 		}
 	}
