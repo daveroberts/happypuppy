@@ -16,14 +16,14 @@ class XMLlib
   public static function objToXML($obj)
   {
     $ro = new ReflectionObject($obj);
-    $xml_output .= "<".$ro->getName().">\n";
+    $xml_output .= "<".$ro->getShortName().">\n";
     foreach($ro->getProperties() as $prop)
     {
       $name = $prop->name;
       $value = $obj->$name;
       $xml_output .= "<$prop->name>$value</$prop->name>\n";
     }
-    $xml_output .= "</".$ro->getName().">\n";
+    $xml_output .= "</".$ro->getShortName().">\n";
     return $xml_output;
   }
 }

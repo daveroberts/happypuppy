@@ -17,7 +17,7 @@ class personAjaxController extends \HappyPuppy\Controller
 		{
 			case "xml":
 				header("Content-type: text/xml"); 
-				$this->render_text(XMLlib::toXML("people", $this->people));
+				$this->render_text(\XMLlib::toXML("people", $this->people));
 				break;
 			case "json":
 				header('Content-Type: text/plain'); // plain text file
