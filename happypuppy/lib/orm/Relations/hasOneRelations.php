@@ -57,7 +57,7 @@ class HasOneRelations extends RelationCollection
 		$this->_cached_values[$relation_name] = $value;
 	}
 	
-	public function saveRelation($relation_name, $new_ids){
+	public function saveRelation($relation_name, $new_ids, $debug = false){
 		if (!$this->hasRelation($relation_name)){ throw new Exception("No relation named ".$relation_name); }
 		$relation = $this->_relations[$relation_name];
 		$new_id = $new_ids[0];
@@ -79,6 +79,7 @@ class HasOneRelations extends RelationCollection
 		$sql .= "SET ".$foreign_key."=".$new_id." ";
 		$sql .= "WHERE ".$pk_col."=".$pk_val." ";
 		$sql .= "LIMIT 1";
+		if ($debug){ print($sql); return false; }
 		DB::exec($sql);
 		$this->buildRelation($relation_name);
 		return true;

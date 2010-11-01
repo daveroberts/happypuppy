@@ -72,15 +72,15 @@ abstract class RelationCollection
 	}
 	
 	// save relations
-	public function saveAllRelations(){
+	public function saveAllRelations($debug = false){
 		foreach($this->_relations as $relation_name=>$relation)
 		{
-			$result = $this->save($relation_name);
+			$result = $this->save($relation_name, $debug);
 			if (!$result){ return false; }
 		}
 		return true;
 	}
-	public function save($relation_name){
+	public function save($relation_name, $debug = false){
 		if (!$this->hasRelation($relation_name)){ throw new Exception("No Relation named: ".$relation_name); }
 		if (!$this->isDirty($relation_name)){ return true; }
 		$new_ids = array();
@@ -104,7 +104,7 @@ abstract class RelationCollection
 				$new_ids[] = null;
 			}
 		}
-		$result = $this->saveRelation($relation_name, $new_ids);
+		$result = $this->saveRelation($relation_name, $new_ids, $debug);
 		if ($result)
 		{
 			$this->_dirty_marks[$relation_name] = false;

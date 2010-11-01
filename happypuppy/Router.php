@@ -5,34 +5,6 @@
 	require_once('Application.php');
 	class Router
 	{
-		static function CheckForStaticContent($url)
-		{
-			$parts = split("/", $url);
-			$possible_app = $parts[0];
-
-			if (in_array($possible_app, $_ENV['config']["apps"]))
-			{
-				// pull off the app name
-				array_shift($parts);
-				$relative_file_path = implode("/", $parts);
-				$file_path = $_ENV['docroot'].'apps/'.$possible_app.'/content/'.$relative_file_path;
-				if (is_file($file_path))
-				{
-					Router::StaticFile($file_path);
-				}
-				else { return; }
-			}
-			else
-			{
-				// maybe the file is in the default app without an app prefix
-				$relative_file_path = implode("/", $parts);
-				$file_path = $_ENV['docroot'].'apps/'.$_ENV["config"]["default_app"].'/content/'.$relative_file_path;
-				if (is_file($file_path))
-				{
-					Router::StaticFile($file_path);
-				}
-			}
-		}
 		static function URLToRoute($url)
 		{
 			$routetree = Cache::get("routetree");
@@ -76,24 +48,6 @@
 			$out = $render_engine_instance->process($_ENV["controller"], $route->controller, $route->action);
 			print($out);
 		}
-		private static function StaticFile($file_path)
-		{
-			/*$mime_type = 'application/octet-stream';
-			$finfo = finfo_open(FILEINFO_MIME_TYPE); // return mime type ala mimetype extension
-			$mime_type = finfo_file($finfo, $file_path);
-			finfo_close($finfo);*/
-			// NFS doesn't have finfo_open extension
-			$mime_type = \mime_content_type($file_path);
-			header('Content-Type: '.$mime_type);
-			header("Expires: " . gmdate('D, d-M-Y H:i:s \G\M\T', time() + 60)); // Valid for one minute
-			header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
-			header('Pragma: public');
-			header('Content-Length: ' . filesize($file_path));
-			ob_clean();
-			flush();
-			readfile($file_path);
-			exit;
-		}
 		private static function LoadApplication($route)
 		{
 			require_once($route->appFilename());
@@ -111,6 +65,8 @@
 			}
 			$app_classname = $route->app.'\\'.$route->appClassname();
 			$_ENV["app"] = new $app_classname($route->app);
+			// load the database
+			DB::LoadDB($route->app);
 			$_ENV["app"]->__baseinit();
 			if(method_exists($_ENV["app"], "__init")){
 				$_ENV["app"]->__init();

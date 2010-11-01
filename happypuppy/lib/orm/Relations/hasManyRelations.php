@@ -59,7 +59,7 @@ class HasManyRelations extends RelationCollection
 		}
 	}
 	
-	public function saveRelation($relation_name, $new_ids){
+	public function saveRelation($relation_name, $new_ids, $debug = false){
 		throw new Exception("Need to rethink this");
 		if (!$this->hasRelation($relation_name)){ throw new Exception("No relation named ".$relation_name); }
 		if (!is_array($new_ids)){ throw new Exception($relation_name." must be set to an array"); }
@@ -76,7 +76,8 @@ class HasManyRelations extends RelationCollection
 		$foreign_table_pk = $gen_obj->pk;
 
 		$sql = "SELECT t.".$foreign_table_pk." FROM ".$foreign_table." t where t.".$foreign_fk_col."=".$this_pk_val;
-		$db_results = DB::query($sql);
+		if ($debug){ print($sql); }
+		else { $db_results = DB::query($sql); }
 		foreach($db_results as $db_row)
 		{
 			$old_ids[] = $db_row[$link_foreign_col];
@@ -95,7 +96,8 @@ class HasManyRelations extends RelationCollection
 			{
 				// delete the link between these two objects
 				$sql = "UPDATE ".$foreign_table." SET ".$foreign_fk_col."=NULL WHERE ".$foreign_table_pk."=".$old_id." LIMIT 1";
-				DB::exec($sql);
+				if ($debug){ print($sql); }
+				else { DB::exec($sql); }
 			}
 		}
 		// Update the entries which where not already pointing here
@@ -103,8 +105,10 @@ class HasManyRelations extends RelationCollection
 		foreach($new_ids as $new_id)
 		{
 			$sql = "UPDATE ".$foreign_table." SET ".$foreign_fk_col."=".$new_id." WHERE ".$foreign_table_pk."=".$new_id." LIMIT 1";			$db_results = DB::query($sql);
-			DB::exec($sql);
+			if ($debug){ print($sql); }
+			else { DB::exec($sql); }
 		}
+		if ($debug){ return false; }
 		$this->buildRelation($relation_name);
 		return true;
 	}

@@ -113,12 +113,12 @@ class Relations
 		return false;
 	}
 	
-	public function save(){
-		$result = $this->_has_many->saveAllRelations();
+	public function save($debug = false){
+		$result = $this->_has_many->saveAllRelations($debug);
 		if (!$result){ return false; }
-		$result = $this->_habtm->saveAllRelations();
+		$result = $this->_habtm->saveAllRelations($debug);
 		if (!$result){ return false; }
-		$result = $this->_has_one->saveAllRelations();
+		$result = $this->_has_one->saveAllRelations($debug);
 		if (!$result){ return false; }
 		return true;
 	}

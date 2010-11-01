@@ -70,18 +70,18 @@ class Fields
 		}
 	}
 
-	public function save(&$error_msg){
+	public function save(&$error_msg, $debug = false){
 		if ($this->getField($this->getPK()) == null)
 		{
 			$before_insert = $this->beforeInsert($error_msg);
 			if (!$before_insert){ return false; }
-			return $this->insert();
+			return $this->insert($debug);
 		}
 		else
 		{
 			$before_update = $this->beforeUpdate($error_msg);
 			if (!$before_update){ return false; }
-			return $this->update();
+			return $this->update($debug);
 		}
 	}
 	private function beforeInsert(&$error_msg){
@@ -95,7 +95,7 @@ class Fields
 		}
 		return true;
 	}
-	private function insert(){
+	private function insert($debug = false){
 		$sql = "INSERT INTO ".$this->_dbobject->tablename." (";
 		foreach($this->fieldNames() as $field)
 		{
@@ -123,6 +123,7 @@ class Fields
 		}
 		$sql = rtrim($sql, ", ");
 		$sql .= ")";
+		if ($debug){ print $sql; return false; }
 		$result = DB::exec($sql);
 		if ($result)
 		{
@@ -143,7 +144,7 @@ class Fields
 		}
 		return true;
 	}
-	private function update(){
+	private function update($debug = false){
 		$sql = "UPDATE ".$this->_dbobject->tablename." SET ";
 		foreach($this->fieldNames() as $field)
 		{
@@ -163,6 +164,7 @@ class Fields
 		}
 		$sql = rtrim($sql, ", ");
 		$sql .= " WHERE ".$this->getPK()."='".$this->getField($this->getpk())."'";
+		if ($debug){ print($sql); return false; }
 		$result = DB::exec($sql);
 		return $result;
 	}

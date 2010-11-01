@@ -1,6 +1,6 @@
 <?
 namespace HappyPuppy;
-require_once("config/config.php");
+require_once($_ENV["docroot"]."config/hp.php");
 require_once("lib/all.php");
 require_once("SimpleCache.php");
 require_once("Router.php");
@@ -51,8 +51,10 @@ class HappyPuppy
 	/* Process requests and dispatch */
 	public function dispatch_to($url)
 	{
-		// check first if they are requesting static content in an app folder, if so, redirect them there
-		Router::CheckForStaticContent($url);
+		// serving static content from php is a nightmare.
+		// Not all versions of php can determine mime-type
+		// picking the wrong mime type for stylesheets can cause the sheet not to load.
+		// leaving this to the web server for now
 		$route = Router::URLToRoute($url);
 		if ($route != null)
 		{
@@ -62,11 +64,11 @@ class HappyPuppy
 		{
 			if ($_ENV['config']["debug_mode"])
 			{
-				require($_ENV['config']["route_not_found_page_debug"]);
+				require($_ENV["docroot"].$_ENV['config']["route_not_found_page_debug"]);
 			}
 			else
 			{
-				require($_ENV['config']["route_not_found_page"]);
+				require($_ENV["docroot"].$_ENV['config']["route_not_found_page"]);
 			}
 			exit();
 		}

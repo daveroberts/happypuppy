@@ -12,7 +12,9 @@
 		{
 			foreach($_ENV['config']["apps"] as $app)
 			{
-				require_once($_ENV['docroot'].'apps/'.$app.'/'.$app.'Application.php');
+				$filepath = $_ENV['docroot'].'apps/'.$app.'/'.$app.'Application.php';
+				if (!is_file($filepath)){ throw new Exception("No app file found for $app at $filepath"); }
+				require_once($filepath);
 				$app_classname = $app.'\\'.$app.'Application';
 				$app_instance = new $app_classname($app);
 				// can't call init here.  What if a database reference is created?  That should be global

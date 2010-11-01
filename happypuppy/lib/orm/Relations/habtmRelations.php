@@ -64,7 +64,7 @@ class HabtmRelations extends RelationCollection
 		}
 	}
 	
-	public function saveRelation($relation_name, $new_ids){
+	public function saveRelation($relation_name, $new_ids, $debug = false){
 		if (!$this->hasRelation($relation_name)){ throw new Exception("No relation named ".$relation_name); }
 		if (!is_array($new_ids)){ throw new Exception($relation_name." must be set to an array"); }
 		$relation = $this->_relations[$relation_name];
@@ -79,6 +79,7 @@ class HabtmRelations extends RelationCollection
 		$link_table = $relation->link_table;
 		
 		$sql = "SELECT lt.".$link_foreign_col." FROM ".$link_table." lt where lt.".$link_here_col."=".$this_pk_val;
+		if ($debug){ print($sql); }
 		$db_results = DB::query($sql);
 		foreach($db_results as $db_row)
 		{
@@ -99,7 +100,8 @@ class HabtmRelations extends RelationCollection
 				// delete the link between these two objects
 				$sql = "DELETE FROM ".$relation->link_table." WHERE ";
 				$sql .= $link_here_col."=".$this_pk_val." AND ".$link_foreign_col."=".$old_id." LIMIT 1";
-				$db_results = DB::query($sql);
+				if ($debug){ print($sql); }
+				else { $db_results = DB::query($sql); }
 			}
 		}
 		// Update the entries which where not already pointing here
@@ -112,8 +114,10 @@ class HabtmRelations extends RelationCollection
 			$sql = "INSERT INTO ".$relation->link_table." ";
 			$sql .= "(".$link_here_col.", ".$link_foreign_col.") VALUES ";
 			$sql .= "(".$this_pk_val.", ".$new_id.")";
-			$db_results = DB::query($sql);
+			if ($debug){ print($sql); }
+			else { $db_results = DB::query($sql); }
 		}
+		if ($debug){ return false; }
 		$this->buildRelation($relation_name);
 		return true;
 	}

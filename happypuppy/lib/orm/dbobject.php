@@ -155,6 +155,7 @@ abstract class dbobject
 		IdentityMap::set($this->tablename,$pk_id,$this);
 	}
 	public function build($arr){
+		if ($arr == null) { throw new \Exception("Array passed to build is null"); }
 		$this->_fields->buildFromForm($arr);
 		$this->_relations->buildFromForm($arr);
 	}
@@ -204,15 +205,15 @@ abstract class dbobject
 			$x = 0;
 		}
 	}
-	public function save(&$error_msg = ''){
+	public function save(&$error_msg = '', $debug = false){
 		if (method_exists($this, "before_save"))
 		{
 			$before_save_result = $this->before_save($error_msg);
 			if (!$before_save_result){ return false; }
 		}
-		$result = $this->_fields->save($error_msg);
+		$result = $this->_fields->save($error_msg, $debug);
 		if (!$result){ return false; }
-		$result = $this->_relations->save($error_msg);
+		$result = $this->_relations->save($error_msg, $debug);
 		if (!$result){ return false; }
 		return true;
 	}
