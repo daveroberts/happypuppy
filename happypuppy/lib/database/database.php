@@ -19,7 +19,7 @@ class DB
 	{
 		if (file_exists($_ENV["docroot"]."config/DBConf.php"))
 		{
-			if ($_ENV["config"]["debug_mode"] && DB::Exists())
+			if ($_ENV['config']['env'] == Environment::DEV && DB::Exists())
 			{
 				$db_version = DB::Version();
 				$method_name = $app."DBVersion";

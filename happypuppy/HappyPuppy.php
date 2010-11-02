@@ -11,7 +11,7 @@ function run()
 	try { HappyPuppy::getInstance()->dispatch(); } catch (Exception $e)
 	{
 		header('HTTP/1.1 500 Internal Server Error');
-		if ($_ENV['config']['debug_mode'])
+		if ($_ENV['config']['env'] == Environment::DEV)
 		{
 			print($e);
 		}
@@ -36,7 +36,7 @@ class HappyPuppy
 	
 	function init()
 	{
-		if ($_ENV['config']["debug_mode"])
+		if ($_ENV['config']['env'] == Environment::DEV)
 		{
 			$provider = '\HappyPuppy\SqliteCacheProvider';
 			//Cache::reportsTo(new $provider);
@@ -62,7 +62,7 @@ class HappyPuppy
 		}
 		else
 		{
-			if ($_ENV['config']["debug_mode"])
+			if ($_ENV['config']['env'] == Environment::DEV)
 			{
 				require($_ENV["docroot"].$_ENV['config']["route_not_found_page_debug"]);
 			}

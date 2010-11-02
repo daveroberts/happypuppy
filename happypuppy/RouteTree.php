@@ -10,7 +10,10 @@
 		}
 		function GetRoutes()
 		{
-			foreach($_ENV['config']["apps"] as $app)
+			$apps;
+			if ($_ENV['config']['env'] == Environment::DEV){ $apps = $_ENV["config"]["all_apps"]; }
+			else { $apps = $_ENV["config"]["prod_apps"]; }
+			foreach($apps as $app)
 			{
 				$filepath = $_ENV['docroot'].'apps/'.$app.'/'.$app.'Application.php';
 				if (!is_file($filepath)){ throw new Exception("No app file found for $app at $filepath"); }

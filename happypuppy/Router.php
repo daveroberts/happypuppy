@@ -8,7 +8,7 @@
 		static function URLToRoute($url)
 		{
 			$routetree = Cache::get("routetree");
-			if ($routetree == null || $_ENV["config"]["debug_mode"])
+			if ($routetree == null || $_ENV['config']['env'] == Environment::DEV)
 			{
 				$routetree = new RouteTree();
 				Cache::set("routetree", $routetree);
@@ -53,7 +53,7 @@
 			require_once($route->appFilename());
 			if (!class_exists($route->app.'\\'.$route->appClassname()))
 			{
-				if (!$_ENV["config"]["debug_mode"])
+				if ($_ENV['config']['env'] != Environment::DEV)
 				{
 					not_found();
 				}
@@ -75,7 +75,7 @@
 		private static function LoadController($route)
 		{
 			require_once($route->controllerFilename());
-			if (!class_exists($route->app.'\\'.$route->controllerClassname())){ if (!$_ENV["config"]["debug_mode"]){not_found();} else{ print("Can't find controller: ".$route->controllerClassname().'.  Make sure Happy Puppy can see your controllers.  Happy Puppy by default loads DOCROOT/apps/$app/controllers/$controller'); exit(); } }
+			if (!class_exists($route->app.'\\'.$route->controllerClassname())){ if ($_ENV['config']['env'] != Environment::DEV){not_found();} else{ print("Can't find controller: ".$route->controllerClassname().'.  Make sure Happy Puppy can see your controllers.  Happy Puppy by default loads DOCROOT/apps/$app/controllers/$controller'); exit(); } }
 			$controller_classname = $route->app.'\\'.$route->controllerClassname();
 			$_ENV["controller"] = new $controller_classname($_ENV["app"], substr($route->controllerClassname(), 0, strlen($route->controllerClassname())-10));
 			$_ENV["controller"]->__baseinit();
