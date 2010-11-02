@@ -1,5 +1,6 @@
 <?php
 namespace HappyPuppy;
+// Test
 	$_ENV["config"] = array();
 	$_ENV["config"]["prod_apps"] = array("sample");
 	$_ENV["config"]["dev_apps"] = array("happypuppytools");
