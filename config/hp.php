@@ -1,7 +1,7 @@
 <?php
 namespace HappyPuppy;
 	$_ENV["config"] = array();
-	$_ENV["config"]["prod_apps"] = array("budget", "sample", "lol");
+	$_ENV["config"]["prod_apps"] = array("sample");
 	$_ENV["config"]["dev_apps"] = array("happypuppytools");
 	$_ENV["config"]["all_apps"] = array_merge($_ENV["config"]["prod_apps"], $_ENV["config"]["dev_apps"]);
 	$_ENV["config"]["default_app"] = "sample";
