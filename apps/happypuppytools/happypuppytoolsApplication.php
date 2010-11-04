@@ -9,7 +9,6 @@ class happypuppytoolsApplication extends \HappyPuppy\Application
 	public function __init()
 	{
 		$this->title = "Happy Puppy Tools";
-		$this->require_file('initdb.php');
 	}
 }
 
