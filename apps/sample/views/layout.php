@@ -4,14 +4,13 @@
 <head>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 <title><?if($title==""){?>Happy Puppy<?}else{?><?=$title?><?}?></title>
-  <link rel="stylesheet" href="/css/reset.css" type="text/css" />
+  <link rel="stylesheet" href="/sample/css/reset.css" type="text/css" />
   <link rel="stylesheet" href="/sample/css/style.css" type="text/css" />
   <link rel="stylesheet" href="/sample/css/positioning.css" type="text/css" />
   <link rel="stylesheet" href="/sample/css/color.css" type="text/css" />
-  <script type="text/javascript" src="/js/jquery-1.4.2.min.js"></script>
-  <script type="text/javascript" src="/js/jquery.json-2.2.min.js"></script>
-  <script type="text/javascript" src="/js/jquery.form.js"></script>
-  <script type="text/javascript" src="/js/jquery-ui-1.8.5.custom.min.js"></script>
+  <script type="text/javascript" src="/sample/js/jquery-1.4.2.min.js"></script>
+  <script type="text/javascript" src="/sample/js/jquery.json-2.2.min.js"></script>
+  <script type="text/javascript" src="/sample/js/jquery.form.js"></script>
   <?=$head?>
 </head>
 <body>
