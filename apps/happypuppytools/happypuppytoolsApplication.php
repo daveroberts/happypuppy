@@ -3,7 +3,7 @@
 namespace happypuppytools;
 class happypuppytoolsApplication extends \HappyPuppy\Application
 {
-	function defaultController(){ return "Routes"; }
+	function defaultController(){ return "Service"; }
 	// set variables here that are application wide
 	// import libraries used in this application
 	public function __init()

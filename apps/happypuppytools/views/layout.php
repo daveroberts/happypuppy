@@ -18,6 +18,8 @@
 <div style="background-color: white; border: 4px solid gray; margin: 2em 3em; padding: 1em;">
 	<h1>Happy Puppy Tools</h1>
 	<? if (hasflash()){ ?><div id="flashmessage"><?=getflash()?></div><? } ?>
+	<div><?=link_to("Database Migrations", "/database")?></div>
+	<div><?=link_to("Routes", "/routes")?></div>
 	<?=$content?>
 </div>
 </body>

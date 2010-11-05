@@ -14,7 +14,7 @@ namespace HappyPuppy;
 	$_ENV["config"]["env"] = Environment::DEV;
 	$_ENV["config"]["static_error_page"] = "happypuppy/error/defaultError.php";
 	$_ENV["config"]["route_not_found_page"] = "happypuppy/error/default404.php";
-	$_ENV["config"]["route_not_found_page_debug"] = "happypuppy/error/default404debug.php";
+	$_ENV["config"]["route_not_found_page_dev"] = "happypuppy/error/default404dev.php";
 	$_ENV["config"]["render_engine"] = 'php';
-	$_ENV["config"]["plural_db_tables"] = 0;
+	$_ENV["config"]["plural_db_tables"] = 1;
 ?>

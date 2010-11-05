@@ -1,7 +1,7 @@
 <?
 
 namespace sample;
-class person // normally would extend \HappyPuppy\dbobject, but we're faking the db stuff for now
+class person // normally would extend \HappyPuppy\Model, but we're faking the db stuff for now
 {
   var $id;
   var $name;
