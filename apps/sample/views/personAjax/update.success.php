@@ -1,1 +1,1 @@
-<?=$result?><?=render('personAjax/_person', 'person', $person)?>
+<?php echo $result?><?php echo render('personAjax/_person', 'person', $person)?>

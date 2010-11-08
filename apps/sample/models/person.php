@@ -1,4 +1,4 @@
-<?
+<?php
 
 namespace sample;
 class person // normally would extend \HappyPuppy\Model, but we're faking the db stuff for now

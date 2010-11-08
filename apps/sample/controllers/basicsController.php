@@ -1,4 +1,4 @@
-<?
+<?php
 namespace sample;
 class basicsController extends \HappyPuppy\Controller
 {

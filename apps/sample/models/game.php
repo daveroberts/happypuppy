@@ -1,4 +1,4 @@
-<?
+<?php
 
 namespace sample;
 class Game extends \HappyPuppy\Model

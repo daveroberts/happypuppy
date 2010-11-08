@@ -1,10 +1,10 @@
-<?
+<?php
 class XMLlib
 {
   public static function toXML($collection_name, $arr = array())
   {
     // There's probably a better way to do this
-    $xml_output  = "<?xml version=\"1.0\"?>\n";
+    $xml_output  = "<?phpxml version=\"1.0\"?>\n";
     $xml_output .= "<$collection_name>\n";
     foreach($arr as $obj)
     {

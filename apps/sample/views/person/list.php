@@ -5,10 +5,10 @@
 <div id="people">
   <table><thead><tr><td>Name</td><td></td></tr></thead>
     <tbody id='peopleData'><tr><td></td><td></td></tr>
-      <? foreach($people as $person) {?>
-        <tr><td><?= link_to($person->name, "/person/show/".$person->id) ?></td>
-          <td><?= link_to(png('delete'), "/person/destroy/".$person->id, array("onclick"=>js_delete_confirm("Are you sure you want to delete ".$person->name."?", $person->id))) ?></td></tr>
-      <? } ?>
+      <?php foreach($people as $person) {?>
+        <tr><td><?php echo  link_to($person->name, "/person/show/".$person->id) ?></td>
+          <td><?php echo  link_to(png('delete'), "/person/destroy/".$person->id, array("onclick"=>js_delete_confirm("Are you sure you want to delete ".$person->name."?", $person->id))) ?></td></tr>
+      <?php } ?>
     </tbody></table>
     <p>Only showing 10 people</p>
 </div>

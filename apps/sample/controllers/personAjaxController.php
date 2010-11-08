@@ -1,4 +1,4 @@
-<?
+<?php
 
 # load models needed for this controller here
 //xxxrequire_once($_ENV["app"]->root().'models/person.php');

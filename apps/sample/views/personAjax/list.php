@@ -4,18 +4,18 @@
 <img id='newform-load' src='/images/ajax-loader.gif' />
 <div id="newform"></div>
 <div id="people">
-<? foreach($people as $person) {?>
-	<div id="person_<?=$person->id?>">
-		<div id="person_top_<?=$person->id?>" class="person_top">
-			<?= PhpRender::render('personAjax/_person', 'person', $person)?>
+<?php foreach($people as $person) {?>
+	<div id="person_<?php echo $person->id?>">
+		<div id="person_top_<?php echo $person->id?>" class="person_top">
+			<?php echo  PhpRender::render('personAjax/_person', 'person', $person)?>
 		</div>
-		<div id="person_ajax_loading_<?=$person->id?>" style="display: none;">
+		<div id="person_ajax_loading_<?php echo $person->id?>" style="display: none;">
 			<img id='newform-load' src='/images/ajax-loader.gif' />
 		</div>
-		<div id="person_show_<?=$person->id?>" class="person_show">
+		<div id="person_show_<?php echo $person->id?>" class="person_show">
 		</div>
-		<div id="person_edit_<?=$person->id?>" class="person_edit">
+		<div id="person_edit_<?php echo $person->id?>" class="person_edit">
 		</div>
 	</div>
-<? } ?>
+<?php } ?>
 </div>

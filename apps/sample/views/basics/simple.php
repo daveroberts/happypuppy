@@ -1,1 +1,1 @@
-<?= $greeting ?> World
+<?php echo  $greeting ?> World

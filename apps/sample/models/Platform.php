@@ -1,4 +1,4 @@
-<?
+<?php
 
 namespace sample;
 class Platform extends \HappyPuppy\Model

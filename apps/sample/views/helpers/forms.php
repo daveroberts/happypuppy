@@ -1,4 +1,4 @@
-<?
+<?php
 
 function html_text($name, $html_options = array())
 {

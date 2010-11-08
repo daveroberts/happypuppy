@@ -28,11 +28,11 @@ public function validate()
 <pre>var $not_before = array("validate"=&gt;array("login"));</pre>
 <p>Now our validate filter method will run before all actions in this controller except for the login action.  Look at the filtersController class in the /apps/sample/controllers directory for more examples</p>
 <div class="example">
-<p><?= link_to_action("Protected admin only link", "adminonly") ?></p>
+<p><?php echo  link_to_action("Protected admin only link", "adminonly") ?></p>
 <p>This will redirect you to the login page because you're not an admin</p>
 </div>
 <div class="example">
-<p><?= link_to_action("Preloaded data", "alreadyloaded") ?></p>
+<p><?php echo  link_to_action("Preloaded data", "alreadyloaded") ?></p>
 <pre>
 public function preload() // called before all methods
 {

@@ -1,7 +1,7 @@
 <h2>The Basics</h2>
 <p>All of these examples are in the 'basics' controller, found in /apps/sample/controllers/basicsController.php</p>
 <div class="example">
-<p><?= link_to_action('Hello World', 'hello') ?></p>
+<p><?php echo  link_to_action('Hello World', 'hello') ?></p>
 <pre>
 public function hello()
 {
@@ -17,7 +17,7 @@ $this-&gt;text_only = true;
 </div>
 
 <div class="example">
-<p><?= link_to_action('Simple Layout Example', 'simple'); ?></p>
+<p><?php echo  link_to_action('Simple Layout Example', 'simple'); ?></p>
 <pre>
 public function simple()
 {
@@ -37,7 +37,7 @@ The template /views/basics/simple.php looks like this:
 </div>
 
 <div class="example">
-<p><?= link_to("Single argument", '/basics/show/44'); ?></p>
+<p><?php echo  link_to("Single argument", '/basics/show/44'); ?></p>
 <pre>
 public function show($id)
 {
@@ -48,7 +48,7 @@ public function show($id)
 </div>
 
 <div class="example">
-<p><?= link_to('Multiple arguments', '/basics/showboth/first/second') ?></p>
+<p><?php echo  link_to('Multiple arguments', '/basics/showboth/first/second') ?></p>
 <pre>
 public function showboth($one, $two)
 {
@@ -60,7 +60,7 @@ public function showboth($one, $two)
 </div>
 
 <div class="example">
-<p><?= link_to("Custom Route", '/2009/01/20/blog/Hope'); ?></p>
+<p><?php echo  link_to("Custom Route", '/2009/01/20/blog/Hope'); ?></p>
 <pre>R('(?P&lt;year&gt;[-\w]+)/(?P&lt;month&gt;[-\w]+)/(?P&lt;day&gt;[-\w]+)/blog/(?P&lt;title&gt;[-\w]+)', 'basics', 'blog');</pre>
 <pre>
 public function blog($year, $month, $day, $title)
@@ -80,7 +80,7 @@ public function blog($year, $month, $day, $title)
 </div>
 
 <div class="example">
-<p><?= link_to_action('Redirected Link', 'redir'); ?></p>
+<p><?php echo  link_to_action('Redirected Link', 'redir'); ?></p>
 <pre>
 public function redir()
 {
@@ -91,7 +91,7 @@ public function redir()
 </div>
 
 <div class="example">
-<p><?= link_to_action('Alternative View', 'altview'); ?><p>
+<p><?php echo  link_to_action('Alternative View', 'altview'); ?><p>
 <pre>
 public function altview()
 {
@@ -102,7 +102,7 @@ public function altview()
 </div>
 
 <div class="example">
-<p><?= link_to_action('Alternative Layout Template', 'altlayout'); ?></p>
+<p><?php echo  link_to_action('Alternative Layout Template', 'altlayout'); ?></p>
 <pre>
 public function altlayout()
 {
@@ -113,7 +113,7 @@ public function altlayout()
 </div>
 
 <div class="example">
-<p><?= link_to_action('No layout template', 'nolayout'); ?></p>
+<p><?php echo  link_to_action('No layout template', 'nolayout'); ?></p>
 <pre>
 public function nolayout()
 {

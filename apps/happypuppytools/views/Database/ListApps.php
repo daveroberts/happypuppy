@@ -1,4 +1,4 @@
 <h2>List Apps</h2>
-<? foreach($apps as $app): ?>
-<div><?=link_to($app, "/database/migrate/".$app)?></div>
-<? endforeach; ?>
+<?php foreach($apps as $app): ?>
+<div><?php echo link_to($app, "/database/migrate/".$app)?></div>
+<?php endforeach; ?>

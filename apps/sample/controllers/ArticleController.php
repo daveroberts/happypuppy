@@ -1,4 +1,4 @@
-<?
+<?php
 
 namespace sample;
 /** So am I! */

@@ -1,13 +1,14 @@
-<?
+<?php
 namespace sample;
 class sampleApplication extends \HappyPuppy\Application
 {
+	// if a URL doesn't specify a controller (for example http://hostname/sample)
+	// then the doc controller will be used.  Note that the doc controller must define
+	// a default action method as well.
 	function defaultController(){ return "doc"; }
-	// set variables here that are application wide
-	// import libraries used in this application
 	public function __init()
 	{
-		//xxxinclude_dir($_ENV["app"]->root().'views/helpers/*.php');
+		// This code will run before your controller's code is called
 	}
 }
 

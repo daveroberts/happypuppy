@@ -1,6 +1,6 @@
-<?foreach($games as $game):?>
+<?phpforeach($games as $game):?>
 <div>
-	<div><?=$game->name?></div>
-	<div>For <?=$game->platform->name?></div>
+	<div><?php echo $game->name?></div>
+	<div>For <?php echo $game->platform->name?></div>
 </div>
-<?endforeach;?>
+<?phpendforeach;?>

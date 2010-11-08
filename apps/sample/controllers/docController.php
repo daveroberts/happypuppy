@@ -1,4 +1,4 @@
-<?
+<?php
 namespace sample;
 class docController extends \HappyPuppy\Controller
 {

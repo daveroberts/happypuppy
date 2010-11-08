@@ -1,1 +1,1 @@
-Woo hoo!: <?= $article->id ?>
+Woo hoo!: <?php echo  $article->id ?>

@@ -6,7 +6,7 @@ class DatabaseController extends \HappyPuppy\Controller
 	function defaultAction(){ return "ListApps"; }
 	function ListApps()
 	{
-		$this->apps = $_ENV["config"]["all_apps"];
+		$this->apps = $_ENV["config"]["apps"];
 	}
 	function migrate($app)
 	{

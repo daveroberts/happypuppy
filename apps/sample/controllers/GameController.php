@@ -1,4 +1,4 @@
-<?
+<?php
 
 namespace sample;
 class GameController extends \HappyPuppy\Controller

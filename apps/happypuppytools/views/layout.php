@@ -1,7 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
-<title><?=$title?></title>
+<title><?php echo $title?></title>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" /> 
 <script type="text/javascript" src="/js/jquery-1.4.2.min.js"></script>
 <style type="text/css">
@@ -12,15 +12,15 @@
 	.even{ background-color: #FFFFFF; }
 	.odd{ background-color: #CCCCCC; }
 </style>
-<?=$head?>
+<?php echo $head?>
 </head>
 <body style="background-color: #3333AA;">
 <div style="background-color: white; border: 4px solid gray; margin: 2em 3em; padding: 1em;">
 	<h1>Happy Puppy Tools</h1>
-	<? if (hasflash()){ ?><div id="flashmessage"><?=getflash()?></div><? } ?>
-	<div><?=link_to("Database Migrations", "/database")?></div>
-	<div><?=link_to("Routes", "/routes")?></div>
-	<?=$content?>
+	<?php if (hasflash()){ ?><div id="flashmessage"><?php echo getflash()?></div><?php } ?>
+	<div><?php echo link_to("Database Migrations", "/database")?></div>
+	<div><?php echo link_to("Routes", "/routes")?></div>
+	<?php echo $content?>
 </div>
 </body>
 </html>

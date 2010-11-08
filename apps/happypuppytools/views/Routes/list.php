@@ -1,6 +1,6 @@
 <h2>List of Routes</h2>
 <?php foreach($pretty_routes as $app=>$app_route_list): ?>
-	<h3><?= $app ?></h3>
+	<h3><?php echo  $app ?></h3>
 	<table class="apptable">
 		<thead>
 			<tr>
@@ -11,10 +11,10 @@
 		</thead>
 		<tbody>
 	<?php foreach($app_route_list as $route): ?>
-		<tr class="<?= cycle("even", "odd")?>">
-			<td><?= link_to_rawurl($route->GetRouteString(), $route->GetRouteString()); ?></td>
-			<td><?=$route->controller?></td>
-			<td><?=$route->action?></td>
+		<tr class="<?php echo  cycle("even", "odd")?>">
+			<td><?php echo  link_to_rawurl($route->GetRouteString(), $route->GetRouteString()); ?></td>
+			<td><?php echo $route->controller?></td>
+			<td><?php echo $route->action?></td>
 		</tr>
 	<?php endforeach; ?>
 		</tbody>
