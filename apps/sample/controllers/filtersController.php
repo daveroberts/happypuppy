@@ -20,7 +20,7 @@ class filtersController extends \HappyPuppy\Controller
     if (!$admin)
     {
       setflash("You are not an admin");
-      $this->redirect_to_action("login");
+      $this->redirectToAction("login");
     }
   }
   public function preload()
@@ -30,11 +30,11 @@ class filtersController extends \HappyPuppy\Controller
 
   public function adminonly()
   {
-    $this->render_text("Nobody is an admin, so this cannot be seen");
+    $this->renderText("Nobody is an admin, so this cannot be seen");
   }
   public function alreadyloaded()
   {
-    $this->render_text("Preloaded: ".$this->classvar);
+    $this->renderText("Preloaded: ".$this->classvar);
   }
 }
 

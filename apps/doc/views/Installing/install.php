@@ -8,3 +8,4 @@
 <li>Unzip Happy Puppy to your DocumentRoot folder</li>
 <li>Navigate to <a href="http://localhost/TestInstall"></a>http://localhost/TestInstall</li>
 </ol>
+<p>Did it work?  If so, <?php echo link_to("create your first application", "/Applications/Create")?></p>

@@ -25,7 +25,7 @@ class personController extends \HappyPuppy\Controller
 	public function destroy($id)
 	{
 		setflash("Dummy destroy method called (#".$id.")");
-		$this->redirect_to_action("list");
+		$this->redirectToAction("list");
 	}
 	public function edit($id)
 	{
@@ -35,7 +35,7 @@ class personController extends \HappyPuppy\Controller
 	public function update()
 	{
 		setflash("Dummy update method called (#".$_POST['person']['id'].")");
-		$this->redirect_to_action("list");
+		$this->redirectToAction("list");
 	}
 	public function searchby()
 	{

@@ -17,11 +17,11 @@ class personAjaxController extends \HappyPuppy\Controller
 		{
 			case "xml":
 				header("Content-type: text/xml"); 
-				$this->render_text(\XMLlib::toXML("people", $this->people));
+				$this->renderText(\XMLlib::toXML("people", $this->people));
 				break;
 			case "json":
 				header('Content-Type: text/plain'); // plain text file
-				$this->render_text(json_encode($this->people));
+				$this->renderText(json_encode($this->people));
 				break;
 		}
 	}
@@ -68,11 +68,11 @@ class personAjaxController extends \HappyPuppy\Controller
 				break;
 			case "xml":
 				header("Content-type: text/xml"); 
-				$this->render_text(XMLlib::objToXML($this->person));
+				$this->renderText(XMLlib::objToXML($this->person));
 				break;
 			case "json":
 				header('Content-Type: text/plain'); // plain text file
-				$this->render_text(json_encode($this->person));
+				$this->renderText(json_encode($this->person));
 				break;
 		}
 	}
@@ -86,11 +86,11 @@ class personAjaxController extends \HappyPuppy\Controller
 				$this->layout = false;
 				if ($this->result == 1)
 				{
-					$this->render_text($this->result."Destroy suceeded!");
+					$this->renderText($this->result."Destroy suceeded!");
 				}
 				else
 				{
-					$this->render_text($this->result."Destroy randomly fails 50% of the time for demonstration purposes");
+					$this->renderText($this->result."Destroy randomly fails 50% of the time for demonstration purposes");
 				}
 				break;
 			default:
@@ -128,13 +128,13 @@ class personAjaxController extends \HappyPuppy\Controller
 				}
 				else
 				{
-					$this->render_text($this->result."Update randomly fails 50% of the time for demonstration purposes");
+					$this->renderText($this->result."Update randomly fails 50% of the time for demonstration purposes");
 				}
 				break;
 			default:
 				$x = $_POST;
 				setflash("Dummy update method called (#".$_POST['person']['id'].")");
-				$this->redirect_to('/personAjax/list');
+				$this->redirectTo('/personAjax/list');
 		}
 	}
 	public function searchby()

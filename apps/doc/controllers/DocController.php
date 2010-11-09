@@ -9,7 +9,9 @@ class DocController extends \HappyPuppy\Controller
      * !Route GET, /TestInstall
      * */ 
 	public function test(){
-		$this->render_text("Your Happy Puppy installation appears to be working!");
+		print("Your Happy Puppy installation appears to be working!\n");
+		print("Your next step is to create your first application http://happypuppy.nfshost.com/Applications/Create");
+		$this->text_only = true;
 	}
 }
 

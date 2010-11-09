@@ -5,10 +5,10 @@
 <pre>
 public function hello()
 {
-  $this-&gt;render_text('Hello World - Simple text example');
+  $this-&gt;renderText('Hello World - Simple text example');
 }
 </pre>
-<p>Basic Hello World.  By saying <span class="code">$this-&gt;render_text();</span>, we are telling Happy Puppy not to load a template file.  Alternatively, you can write
+<p>Basic Hello World.  By saying <span class="code">$this-&gt;renderText();</span>, we are telling Happy Puppy not to load a template file.  Alternatively, you can write
 <pre>
 echo "Hello World";
 $this-&gt;text_only = true;
@@ -41,7 +41,7 @@ The template /views/basics/simple.php looks like this:
 <pre>
 public function show($id)
 {
-  $this-&gtrender_text("Showing ".$id."  Try changing the number 44 in the URL to the word test");
+  $this-&gtrenderText("Showing ".$id."  Try changing the number 44 in the URL to the word test");
 }
 </pre>
 <p>Specifying parameters is easy</p>
@@ -65,7 +65,7 @@ public function showboth($one, $two)
 <pre>
 public function blog($year, $month, $day, $title)
 {
-  $this-&gt;render_text("Year: $year Month: $month Day: $day Title: $title");
+  $this-&gt;renderText("Year: $year Month: $month Day: $day Title: $title");
 }
 </pre>
 <p>Defining routes are simply calling the method R which takes 3 required parameters plus 2 optional:</p>
@@ -84,7 +84,7 @@ public function blog($year, $month, $day, $title)
 <pre>
 public function redir()
 {
-  $this-&gt;redirect_to('/basics/error');
+  $this-&gt;redirectTo('/basics/error');
 }
 </pre>
 <p>Calling $this-&gt;redirect outputs a location header right away, stops processing and redirects the browser.</p>

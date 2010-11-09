@@ -8,7 +8,7 @@ class basicsController extends \HappyPuppy\Controller
 	public function index(){}
 	public function hello()
 	{
-		$this->render_text('Hello World - Simple text example');
+		$this->renderText('Hello World - Simple text example');
 	}
 	public function simple()
 	{
@@ -17,7 +17,7 @@ class basicsController extends \HappyPuppy\Controller
 	// Passing arguments as part of the URL
 	public function show($id)
 	{
-		$this->render_text("Showing ".$id."  Try changing the number 44 in the URL to the word test");
+		$this->renderText("Showing ".$id."  Try changing the number 44 in the URL to the word test");
 	}
 	public function showboth($one, $two)
 	{
@@ -26,16 +26,16 @@ class basicsController extends \HappyPuppy\Controller
 	}
 	public function blog($year, $month, $day, $title)
 	{
-		$this->render_text("Year: $year Month: $month Day: $day Title: $title");
+		$this->renderText("Year: $year Month: $month Day: $day Title: $title");
 	}
 	// redirection
 	public function redir()
 	{
-		$this->redirect_to('/basics/error');
+		$this->redirectTo('/basics/error');
 	}
 	public function error()
 	{
-		$this->render_text("The link you clicked on was /basics/redir, but look at the url");
+		$this->renderText("The link you clicked on was /basics/redir, but look at the url");
 	}
 	public function altview()
 	{

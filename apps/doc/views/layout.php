@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-<title><?phpif($title==""){?>Happy Puppy<?php}else{?><?php echo $title?><?php}?></title>
+<title><?php if($title==""){?>Happy Puppy<?php }else{?><?php echo $title?><?php }?></title>
   <link rel="stylesheet" href="/sample/css/reset.css" type="text/css" />
   <link rel="stylesheet" href="/sample/css/style.css" type="text/css" />
   <link rel="stylesheet" href="/sample/css/positioning.css" type="text/css" />
@@ -21,6 +21,7 @@
 </div>
 <div id='content'>
 <?php if (hasflash()){ ?><div id="flash"><?php echo getflash()?></div><?php }?>
+<div><?php echo link_to("Table of Contents", "/doc/index") ?></div>
 <?php echo $content?>
 </div>
 </div>

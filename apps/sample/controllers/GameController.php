@@ -18,7 +18,7 @@ class GameController extends \HappyPuppy\Controller
 				break;
 			case 'xml':
 				header("Content-type: text/xml"); 
-				$this->render_text(Game::collectionToXML($this->games, array("platform")));
+				$this->renderText(Game::collectionToXML($this->games, array("platform")));
 				break;
 		}
 	}

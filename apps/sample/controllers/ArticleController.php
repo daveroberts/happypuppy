@@ -8,7 +8,7 @@ class ArticleController extends \HappyPuppy\Controller
 
 	function frontpage()
 	{
-		$this->render_text("Welcome to the index page!");
+		$this->renderText("Welcome to the index page!");
 	}
 	
 	/**
@@ -16,14 +16,14 @@ class ArticleController extends \HappyPuppy\Controller
 	*/
 	function article($year, $month, $day, $slug)
 	{
-		$this->render_text("On $month/$day/$year, this article was published \"$slug\"");
+		$this->renderText("On $month/$day/$year, this article was published \"$slug\"");
 	}
 	/**  
      * !Route GET, /hello/$first/$last 
      * */ 
 	function greeting($first, $last)
 	{
-		$this->render_text("Well hello to you too $first $last!");
+		$this->renderText("Well hello to you too $first $last!");
 	}
 	/**
 		!Route GET, /news
@@ -31,7 +31,7 @@ class ArticleController extends \HappyPuppy\Controller
 	*/
 	function news()
 	{
-		$this->render_text("This is the news page");
+		$this->renderText("This is the news page");
 	}
 	function get($id)
 	{

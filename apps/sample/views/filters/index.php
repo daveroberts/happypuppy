@@ -11,7 +11,7 @@ public function validate()
     // setflash is a helper method
     // It sets a message before redirect is called
     setflash("You are not an admin");
-    $this-&gt;redirect_to_action("login");
+    $this-&gt;redirectToAction("login");
   }
 }
 </pre>
@@ -43,7 +43,7 @@ public function preload() // called before all methods
 // classvar is already loaded here
 public function alreadyloaded()
 {
-  $this-&gt;render_text("Preloaded: ".$this-&gt;classvar);
+  $this-&gt;renderText("Preloaded: ".$this-&gt;classvar);
 }
 </pre>
 <p>Here is an example where the data is loaded in a filter method instead of the action.  This way it can be repeated across all actions</p>

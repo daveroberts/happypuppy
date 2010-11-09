@@ -42,7 +42,7 @@ run();
 class helloController extends C
 {
   public function world(){
-    $this-&gt;render_text("Hello World");
+    $this-&gt;renderText("Hello World");
   }
 }
 </pre>

@@ -22,11 +22,11 @@ switch ($this-&gt;responds_to)
 {
 	case "xml":
 		header("Content-type: text/xml"); 
-		$this-&gt;render_text(XMLlib::toXML("people", $this-&gt;people));
+		$this-&gt;renderText(XMLlib::toXML("people", $this-&gt;people));
 		break;
 	case "json":
 		header('Content-Type: text/plain'); // plain text file
-		$this-&gt;render_text(json_encode($this-&gt;people));
+		$this-&gt;renderText(json_encode($this-&gt;people));
 		break;
 }
 </pre>

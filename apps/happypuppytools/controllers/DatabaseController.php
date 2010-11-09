@@ -18,12 +18,12 @@ class DatabaseController extends \HappyPuppy\Controller
 	{
 		if ($_SERVER['REQUEST_METHOD'] != "POST"){
 			setflash("Must call this page by clicking the button");
-			$this->redirect_to("/Database/migrate/".$app);
+			$this->redirectTo("/Database/migrate/".$app);
 		}
 		$version = $_POST["version"];
 		\HappyPuppy\DBMigrationExec::MigrateDB($app, $version);
 		setflash("Database migrated to version ".$version);
-		$this->redirect_to("/Database/migrate/".$app);
+		$this->redirectTo("/Database/migrate/".$app);
 	}
 }
 
