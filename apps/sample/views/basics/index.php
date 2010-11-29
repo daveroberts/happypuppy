@@ -61,26 +61,21 @@ public function showboth($one, $two)
 
 <div class="example">
 <p><?php echo  link_to("Custom Route", '/2009/01/20/blog/Hope'); ?></p>
-<pre>R('(?P&lt;year&gt;[-\w]+)/(?P&lt;month&gt;[-\w]+)/(?P&lt;day&gt;[-\w]+)/blog/(?P&lt;title&gt;[-\w]+)', 'basics', 'blog');</pre>
 <pre>
-public function blog($year, $month, $day, $title)
+/**
+* !Route GET, /$year/$month/$day/blog/$slug
+*/
+public function blog($year, $month, $day, $slug)
 {
-  $this-&gt;renderText("Year: $year Month: $month Day: $day Title: $title");
+	$this-&gt;renderText("Year: $year Month: $month Day: $day Title: $slug");
 }
 </pre>
-<p>Defining routes are simply calling the method R which takes 3 required parameters plus 2 optional:</p>
-<ol>
-<li>The regex of your route.  The variables are defined by order.  Your function must maintain this order</li>
-<li>The controller to call upon</li>
-<li>The function (action) of the controller to call upon</li>
-<li><i>Optional: </i>responds_to variable - <span class='code'>$this-&gt;responds_to</span> will be set to the value here.  Default is an empty string.  See MVC Example for more info about responds_to</li>
-<li><i>Optional: </i>HTTP Method.  This must match for the route to be accepted.  Defaults to 'GET'</li>
-</ol>
-<p>Add the route to your routes file.  Include the routes file in your index.php</p>
+<p>Adding a Route annotation before your controller's action will change its route</p>
+<p>If I hadn't added the annotation, the URL would have been sample/basics/blog/2009/01/20/Hope</p>
 </div>
 
 <div class="example">
-<p><?php echo  link_to_action('Redirected Link', 'redir'); ?></p>
+<p><?php echo  link_to('Redirected Link', 'redir'); ?></p>
 <pre>
 public function redir()
 {
@@ -91,7 +86,7 @@ public function redir()
 </div>
 
 <div class="example">
-<p><?php echo  link_to_action('Alternative View', 'altview'); ?><p>
+<p><?php echo  link_to('Alternative View', 'altview'); ?><p>
 <pre>
 public function altview()
 {
@@ -102,7 +97,7 @@ public function altview()
 </div>
 
 <div class="example">
-<p><?php echo  link_to_action('Alternative Layout Template', 'altlayout'); ?></p>
+<p><?php echo  link_to('Alternative Layout Template', 'altlayout'); ?></p>
 <pre>
 public function altlayout()
 {
@@ -113,7 +108,7 @@ public function altlayout()
 </div>
 
 <div class="example">
-<p><?php echo  link_to_action('No layout template', 'nolayout'); ?></p>
+<p><?php echo  link_to('No layout template', 'nolayout'); ?></p>
 <pre>
 public function nolayout()
 {

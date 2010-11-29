@@ -21,7 +21,7 @@
 </div>
 <div id='content'>
 <?php if (hasflash()){ ?><div id="flash"><?php echo getflash()?></div><?php }?>
-<div><?php echo link_to("Table of Contents", "/doc/index") ?></div>
+<div><?php echo link_to("Table of Contents", "/Doc/TableOfContents") ?></div>
 <?php echo $content?>
 </div>
 </div>

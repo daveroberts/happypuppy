@@ -1,1 +1,3 @@
-basics on views
+<h1>Using Views in your Happy Puppy application</h1>
+<p>In the <?php echo link_to("last example", "/Applications/Create")?> you created a new Happy Puppy application, a controller in that application, and an action in that controller.</p>
+<p>The controller's action just printed some text, then set a flag to say that this action would </p>

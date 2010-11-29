@@ -24,9 +24,12 @@ class basicsController extends \HappyPuppy\Controller
 		echo "Arg #1: ($one) Arg #2: ($two)";
 		$this->text_only = true;
 	}
-	public function blog($year, $month, $day, $title)
+	/**
+	* !Route GET, /$year/$month/$day/blog/$slug
+	*/
+	public function blog($year, $month, $day, $slug)
 	{
-		$this->renderText("Year: $year Month: $month Day: $day Title: $title");
+		$this->renderText("Year: $year Month: $month Day: $day Title: $slug");
 	}
 	// redirection
 	public function redir()

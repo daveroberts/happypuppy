@@ -1,8 +1,5 @@
 <?php
 
-# load models needed for this controller here
-//xxxrequire_once($_ENV["app"]->root().'models/person.php');
-//xxxrequire_once($_ENV["app"]->root().'models/XMLlib.php');
 namespace sample;
 class personAjaxController extends \HappyPuppy\Controller
 {
@@ -20,7 +17,6 @@ class personAjaxController extends \HappyPuppy\Controller
 				$this->renderText(\XMLlib::toXML("people", $this->people));
 				break;
 			case "json":
-				header('Content-Type: text/plain'); // plain text file
 				$this->renderText(json_encode($this->people));
 				break;
 		}

@@ -5,6 +5,7 @@ class DocController extends \HappyPuppy\Controller
 {
 	public function defaultAction(){ return "index"; }
 	public function index(){}
+	public function tableofcontents(){}
 	/**  
      * !Route GET, /TestInstall
      * */ 

@@ -1,7 +1,7 @@
 <h2>Creating a new Happy Puppy application.</h2>
 <p>This tutorial requires that you've <?php echo link_to("installed Happy Puppy", "/Installing/install") ?></p>
-<p>1) Create a folder in your apps folder.  Name it with your app name (must be all lowercase).  For this example I'll use the name myapp
-<p>2) Create a file in your "myapp" folder named myappApplication.php.  You can copy the sampleApplication.php file from the sample application that comes with Happy Puppy, or you can put this content inside:
+<p>1) Create a folder in your apps folder.  Name it with your app name (must be all lowercase).  For this example I'll use the name myapp</p>
+<p>2) Create a file in your "myapp" folder named myappApplication.php.  You can copy the sampleApplication.php file from the sample application that comes with Happy Puppy, or you can put this content inside:</p>
 <pre>
 &lt;?php
 namespace myapp;
@@ -44,7 +44,6 @@ class HelloController extends \HappyPuppy\Controller
 
 ?&gt;
 </pre>
-<p>7) Navigate to http://hostname/myapp/hello/world</p>
-<p>If you changed the default application in your hp.php file to be "myapp", then your URL will be http://hostname/hello/world</p>
-<p>8) If you saw "Hello World!" in your browser, great!  You are now ready to create more actions in your controllers, create views, create models, and start building your web application.</p>
-<p>If you didn't see "Hello World", copy your error text and contact me.</p>
+<p>7) Navigate to <a href="<?php echo rawurl_from_app("myapp", "hello", "world") // Note: rawurl is normally not used?>">the action you just created</a></p>
+<p>8) If you saw "Hello World!" in your browser, great!  You are now ready to <?php echo link_to("learn more about views", "/Views/Basics")?></p>
+<p>If you didn't see "Hello World", copy your error text and issue a ticket to the <a href="https://github.com/daveroberts/happypuppy/issues">github issue tracker</a>.  I read every issue I receive.</p>

@@ -1,5 +1,12 @@
 <IfModule mod_rewrite.c>
   RewriteEngine On
+
+  # cached copy in the temp folder
+  RewriteCond %{REQUEST_URI} ^(.*)/$
+  RewriteCond %{DOCUMENT_ROOT}/temp/full_pages%{REQUEST_URI}index.html -f
+  RewriteRule !(^index\.php|^temp/full_pages/) /temp/full_pages%{REQUEST_URI}index.html [L]
+  RewriteCond %{DOCUMENT_ROOT}/temp/full_pages%{REQUEST_URI}.html -f
+  RewriteRule !(^index\.php|^temp/full_pages/) /temp/full_pages%{REQUEST_URI}.html [L]
   
   # content in the app folders
   RewriteCond %{REQUEST_URI} ^/(.*?)/(.*)$

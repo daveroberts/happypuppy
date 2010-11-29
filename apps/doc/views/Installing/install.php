@@ -9,3 +9,4 @@
 <li>Navigate to <a href="http://localhost/TestInstall"></a>http://localhost/TestInstall</li>
 </ol>
 <p>Did it work?  If so, <?php echo link_to("create your first application", "/Applications/Create")?></p>
+<p>If not, would you please issue a ticket to the <a href="https://github.com/daveroberts/happypuppy/issues">github issue tracker</a>.  I read every issue I receive.</p>
