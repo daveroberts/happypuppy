@@ -1,6 +1,6 @@
 <?php
 
-namespace happypuppytools;
+namespace hptools;
 class DatabaseController extends \HappyPuppy\Controller
 {
 	function defaultAction(){ return "ListApps"; }

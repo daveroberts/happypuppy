@@ -1,5 +1,5 @@
 <script type="text/javascript">
-	 $(document).ready(function() {
+	$(document).ready(function() {
 		$('#AjaxNewOptionButton').click(AjaxNewOptionButtonClick);
 	});
 	function AjaxNewOptionButtonClick(){

@@ -1,6 +1,6 @@
 <?php
 
-namespace happypuppytools;
+namespace hptools;
 class ServiceController extends \HappyPuppy\Controller
 {
 	function defaultAction(){ return "list"; }

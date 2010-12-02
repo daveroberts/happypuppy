@@ -1,7 +1,7 @@
 <?php
 
-namespace happypuppytools;
-class happypuppytoolsApplication extends \HappyPuppy\Application
+namespace hptools;
+class hptoolsApplication extends \HappyPuppy\Application
 {
 	function defaultController(){ return "Service"; }
 	// set variables here that are application wide

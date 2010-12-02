@@ -4,13 +4,21 @@
 <head>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 <title><?php if($title==""){?>Happy Puppy<?php }else{?><?php echo $title?><?php }?></title>
-  <link rel="stylesheet" href="/sample/css/reset.css" type="text/css" />
-  <link rel="stylesheet" href="/sample/css/style.css" type="text/css" />
-  <link rel="stylesheet" href="/sample/css/positioning.css" type="text/css" />
-  <link rel="stylesheet" href="/sample/css/color.css" type="text/css" />
-  <script type="text/javascript" src="/sample/js/jquery-1.4.2.min.js"></script>
-  <script type="text/javascript" src="/sample/js/jquery.json-2.2.min.js"></script>
-  <script type="text/javascript" src="/sample/js/jquery.form.js"></script>
+	<link rel="stylesheet" href="/sample/css/reset.css" type="text/css" />
+	<link rel="stylesheet" href="/sample/css/style.css" type="text/css" />
+	<link rel="stylesheet" href="/sample/css/positioning.css" type="text/css" />
+	<link rel="stylesheet" href="/sample/css/color.css" type="text/css" />
+	<script type="text/javascript" src="/sample/js/jquery-1.4.2.min.js"></script>
+	<script type="text/javascript" src="/sample/js/jquery.json-2.2.min.js"></script>
+	<script type="text/javascript" src="/sample/js/jquery.form.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			// cool popup effect
+			<?php if (hasflash()): ?>
+			$('#flash').slideDown('slow');
+			<?php endif; ?>
+		});
+	</script>
   <?php echo $head?>
 </head>
 <body>
@@ -27,13 +35,7 @@
 </ul>
 </div>
 <div id='content'>
-<?php
-	$display = "none";
-	if (hasflash()){
-		$flashmessage = getflash(); $display = "block";
-	}
-?>
-<div id="flash" style="display: <?php echo $display?>"><?php echo $flashmessage ?></div>
+<div id="flash" style="display:none;"><?php echo getflash() ?></div>
 <?php echo $content?>
 </div>
 </div>
