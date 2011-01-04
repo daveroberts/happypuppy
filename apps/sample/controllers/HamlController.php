@@ -7,6 +7,8 @@ class HamlController extends \HappyPuppy\Controller
 	public function index()
 	{
 		$_ENV["config"]["render_engine"] = "haml";
+		
+		$this->items = array("one", "two", "three");
 	}
 }
 

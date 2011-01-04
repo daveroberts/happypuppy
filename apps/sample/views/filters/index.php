@@ -11,7 +11,7 @@ public function validate()
     // setflash is a helper method
     // It sets a message before redirect is called
     setflash("You are not an admin");
-    $this-&gt;redirectToAction("login");
+    $this-&gt;redirectTo("login");
   }
 }
 </pre>
@@ -23,7 +23,7 @@ public function validate()
 <pre>var $before = array("validate"=&gt;array("adminonly", "deleteuser", "viewbudget");</pre>
 <p>But that can get tedious.  You can specify a filter method to run before all of your actions with a "*"</p>
 <pre>var $before = array("validate"=&gt;"*");</pre>
-<p>Of course, this will send us on an infinite loop, because if we're not an admin, we're redirected to the login page, and at that page, if we're not an admin, we're redirected to the login page . . .</p>
+<p>Of course, this will send us on an infinite loop, because if we're not an admin, we're redirected to the login page, and at the login page, if we're not an admin, we're redirected to the login page . . .</p>
 <p>To break out of this loop, we should exempt the login page from our validate filter.  To do this, we need to create another class variable, $not_before, with the same format as the $before variable.
 <pre>var $not_before = array("validate"=&gt;array("login"));</pre>
 <p>Now our validate filter method will run before all actions in this controller except for the login action.  Look at the filtersController class in the /apps/sample/controllers directory for more examples</p>

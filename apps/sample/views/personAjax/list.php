@@ -1,4 +1,5 @@
 <div id="ajax_error" class="warning"></div>
+<a id="aTest" href="http://www.google.com">A Test</a>
 <h2>People List</h2>
 <p><a id="newPersonLink" href="/personAjax/new">Add Person</a></p>
 <img id='newform-load' src='/images/ajax-loader.gif' />

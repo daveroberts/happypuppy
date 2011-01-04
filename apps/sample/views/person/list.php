@@ -10,5 +10,4 @@
           <td><?php echo  link_to(png('delete'), "/person/destroy/".$person->id, array("onclick"=>js_delete_confirm("Are you sure you want to delete ".$person->name."?", $person->id))) ?></td></tr>
       <?php } ?>
     </tbody></table>
-    <p>Only showing 10 people</p>
 </div>

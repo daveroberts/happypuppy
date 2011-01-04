@@ -1,3 +1,7 @@
+<style type="text/css">
+	.person_show{ display: none; }
+	.person_edit{ display: none; }
+</style>
 <script type="text/javascript">
 	$(document).ready(function() {
 		var newform_loaded = false;
@@ -8,7 +12,7 @@
 					// get the add person partial from the server
 					$('#newform').hide();
 					$('#newform-load').show();
-					$('#newform').load("/personAjax/new.ajax", {},
+					$('#newform').load("/sample/personAjax/new.ajax", {},
 					function(){
 						$('#newform-load').hide();
 						$('#newform').slideToggle();
@@ -26,15 +30,13 @@
 			clearAjaxDetails();
 			var person_id = e.target.id.replace(/person_show_link_/, "");
 			$('#person_ajax_loading_'+person_id).show();
-			var linkClicked = $(this);
 			$.ajax({
-				url: "/personAjax/show/"+person_id+".ajax",
+				url: "/sample/personAjax/show/"+person_id+".ajax",
 				success: function(html)
 				{
 					$('#person_ajax_loading_'+person_id).hide();
-					$("#person_show_"+person_id).hide();
 					$("#person_show_"+person_id).append(html);
-					$("#person_show_"+person_id).slideToggle();
+					$("#person_show_"+person_id).slideDown('normal');
 				}
 			});
 			return false;
@@ -43,15 +45,13 @@
 			clearAjaxDetails();
 			var person_id = this.id.replace(/person_edit_link_/, "");
 			$('#person_ajax_loading_'+person_id).show();
-			var linkClicked = $(this);
 			$.ajax({
-				url: "/personAjax/edit/"+person_id+".ajax",
+				url: "/sample/personAjax/edit/"+person_id+".ajax",
 				success: function(html)
 				{
 					$('#person_ajax_loading_'+person_id).hide();
-					$("#person_edit_"+person_id).hide();
 					$("#person_edit_"+person_id).append(html);
-					$("#person_edit_"+person_id).slideToggle();
+					$("#person_edit_"+person_id).slideDown('normal');
 				}
 			});
 			return false;
@@ -108,10 +108,10 @@
 			}
 			return false;
 		});
+		function clearAjaxDetails(callback)
+		{
+			$('.show_person_detail').slideUp('normal', function(){ $('.show_person_detail').remove(); });
+			$('.edit_person_detail').slideUp('normal', function(){ $('.edit_person_detail').remove(); });
+		}
 	});
-	function clearAjaxDetails()
-	{
-		$('.edit_person_detail').hide('normal', function(){$(this).remove();});
-		$('.show_person_detail').hide('normal', function(){$(this).remove();});
-	}
 </script>

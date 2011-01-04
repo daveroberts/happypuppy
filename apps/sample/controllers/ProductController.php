@@ -8,27 +8,21 @@ class ProductController extends \HappyPuppy\Controller
 	function _list()
 	{
 		$this->products = Product::All();
-		$this->page = 1;
 		$num_per_page = 3;
+		$this->pg = new \HappyPuppy\Pagination("");
 		$this->s = '';
-		if (isset($_REQUEST["search"]) && $_REQUEST["search"] != '')
+		if ($this->pg->isSearchSet())
 		{
-			$this->s = $_REQUEST["search"];
+			$this->s = $this->pg->search();
 			$this->products = Product::Search($this->products, $this->s);
 		}
-		if (isset($_REQUEST["sort_col"])){
-			$this->sort_col = $_REQUEST["sort_col"];
-			$this->sort_dir = "DESC";
-			if (isset($_REQUEST["sort_dir"])){ $this->sort_dir = $_REQUEST["sort_dir"]; }
-			osort($this->products, $this->sort_col);
-			if ($this->sort_dir == 'ASC'){ $this->products = array_reverse($this->products, true); }
-		}
-		if (isset($_REQUEST["page"])){
-			$this->page = $_REQUEST["page"];
+		if ($this->pg->isSortColSet()){
+			osort($this->products, $this->pg->sortCol());
+			if ($this->pg->isSortDirSet() && $this->pg->sortDir() == 'ASC'){ $this->products = array_reverse($this->products, true); }
 		}
 		$this->total = count($this->products);
-		$this->products = Product::Page($this->products, $this->page, $num_per_page);
-		$this->total_pages = ceil($this->total / $num_per_page);
+		$this->products = array_slice($this->products, ($this->pg->page()-1)*$num_per_page, $num_per_page);
+		$this->pg->setTotalPages(ceil($this->total / $num_per_page));
 	}
 }
 

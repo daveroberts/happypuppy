@@ -11,12 +11,20 @@ class DBConf
 			"dbpassword"=>""
 		);
 	}
-	static function SampleDB(){
+	static function GamesDB(){
 		return array(
 			"hostname"	=>"localhost",
-			"dbname"	=>"sample",
-			"dbusername"=>"sample",
-			"dbpassword"=>"mysamplepass"
+			"dbname"	=>"games",
+			"dbusername"=>"games",
+			"dbpassword"=>"2JVewgc7zEvvrJcHTYyVZnvHMJjZp5PK"
+		);
+	}
+	static function ScratchDB(){
+		return array(
+			"hostname"	=>"localhost",
+			"dbname"	=>"scratch",
+			"dbusername"=>"scratch",
+			"dbpassword"=>"0knHBKQ62Y4iS9xQKHPCw9z0rBg58bNMQOni0liP"
 		);
 	}
 }

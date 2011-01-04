@@ -20,7 +20,7 @@ class filtersController extends \HappyPuppy\Controller
     if (!$admin)
     {
       setflash("You are not an admin");
-      $this->redirectToAction("login");
+      $this->redirectTo("login");
     }
   }
   public function preload()

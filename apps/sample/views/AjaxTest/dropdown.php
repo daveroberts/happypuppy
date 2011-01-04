@@ -1,9 +1,9 @@
 <div>
-<select id="tags">
-	<?php foreach($initialOptions as $opt): ?>
-		<option><?php echo $opt ?></option>
-	<?php endforeach; ?>
-</select>
+	<select id="tags">
+		<?php foreach($initialOptions as $opt): ?>
+			<option><?php echo $opt ?></option>
+		<?php endforeach; ?>
+	</select>
 </div>
 
 <div>

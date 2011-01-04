@@ -1,7 +1,5 @@
 <?php
 
-# load models needed for this controller here
-//xxxrequire_once $_ENV["app"]->root().'models/person.php';
 namespace sample;
 class personController extends \HappyPuppy\Controller
 {
@@ -10,7 +8,6 @@ class personController extends \HappyPuppy\Controller
 	public function _list()
 	{
 		$this->people = person::getAll();
-		$this->people = array_slice($this->people, 0, 10);
 	}
 	public function create()
 	{
@@ -31,11 +28,12 @@ class personController extends \HappyPuppy\Controller
 	{
 		// $this->person = person::get($id);
 		$this->person = array('id'=>$id, 'name'=>'Fake Person'.' '.$id);
+		$this->f = new \HappyPuppy\form($this->person);
 	}
 	public function update()
 	{
 		setflash("Dummy update method called (#".$_POST['person']['id'].")");
-		$this->redirectToAction("list");
+		$this->redirectTo("list");
 	}
 	public function searchby()
 	{

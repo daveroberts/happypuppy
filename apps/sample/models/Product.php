@@ -50,11 +50,6 @@ class Product // normally extends \HappyPuppy\Model, but this is a non-database 
 		}
 		return $products;
 	}
-	static function Page($all_products, $p, $num_per_page)
-	{
-		$products = array_slice($all_products, ($p-1)*$num_per_page, $num_per_page);
-		return $products;
-	}
 }
 
 ?>
