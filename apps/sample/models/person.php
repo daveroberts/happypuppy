@@ -5,6 +5,9 @@ class person // normally would extend \HappyPuppy\Model, but we're faking the db
 {
   var $id;
   var $name;
+  var $college;
+  var $major;
+  var $note;
 
   public function person($params = array())
   {
@@ -14,6 +17,9 @@ class person // normally would extend \HappyPuppy\Model, but we're faking the db
   public static function getFakePerson()
   {
     $p = new person(array('id'=>123, "name"=>"Fake Person"));
+	$p->college = "The State University";
+	$p->major = "Political Computer Science";
+	$p->note = "Maintained a 3.5 GPA";
     return $p;
   }
   /*public static function getAll()

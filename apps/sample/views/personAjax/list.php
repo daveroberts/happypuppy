@@ -1,6 +1,6 @@
 <div id="ajax_error" class="warning"></div>
-<a id="aTest" href="http://www.google.com">A Test</a>
 <h2>People List</h2>
+<div>Note: Deleting people will fail 50% of the time for demo purposes</div>
 <p><a id="newPersonLink" href="/personAjax/new">Add Person</a></p>
 <img id='newform-load' src='/images/ajax-loader.gif' />
 <div id="newform"></div>

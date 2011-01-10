@@ -8,6 +8,3 @@ body { font-family: sans-serif; line-height: 1.4; }
 h1 { text-align: center; font-size: 150%; }
 .example { padding: 0.5em; margin: 1em; }
 pre { overflow: auto; }
-.person_name_area{ float: left; width: 7em; }
-#ajax_error { display: none; }
-.edit_person_detail { margin-left: 20px; }

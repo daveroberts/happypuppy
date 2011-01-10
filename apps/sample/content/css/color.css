@@ -20,14 +20,3 @@ pre { background-color: #CCCCCC; border-left: 5px solid #0000AA; }
 .show_person_detail td { padding: 0 10px 0; }
 .warning { border: 1px solid; margin: 10px 0px; padding:15px 10px 15px 50px; background-repeat: no-repeat; background-position: 10px center; }
 .warning { color: #9F6000; background-color: #FEEFB3; background-image: url('../images/warning.png'); }
-a.squarebutton{
-	background: transparent url('../images/square-blue-left.gif') no-repeat top left; display: block; float: left;
-	line-height: 15px; /* This value + 4px + 4px (top and bottom padding of SPAN) must equal height of button background (default is 23px) */
-	height: 23px; /* Height of button background height */
-	padding-left: 9px; /* Width of left menu image */ text-decoration: none;
-}
-a:link.squarebutton, a:visited.squarebutton, a:active.squarebutton{ color: #494949; /*button text color*/ }
-a.squarebutton span{ background: transparent url('../images/square-blue-right.gif') no-repeat top right; display: block; padding: 4px 9px 4px 0; /*Set 9px below to match value of 'padding-left' value above*/ }
-a.squarebutton:hover{ /* Hover state CSS */ background-position: bottom left; }
-a.squarebutton:hover span{ /* Hover state CSS */ background-position: bottom right; color: black; }
-.buttonwrapper{ /* Container you can use to surround a CSS button to clear float */ overflow: hidden; /*See: http://www.quirksmode.org/css/clearing.html */ width: 100%; }

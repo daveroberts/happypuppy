@@ -56,9 +56,7 @@ class personAjaxController extends \HappyPuppy\Controller
 			case "ajax":
 				// perhaps the ajax view would be more detailed
 				// you can pull in additional info needed for the ajax view here
-				$this->person->college = 'Miami University';
-				$this->person->major = 'Systems Analysis';
-				$this->person->note = 'Decided on a major for seven years';
+				$this->person->name .= " - Retrieved w/ Ajax";
 				$this->layout = false;
 				$this->view_template = 'personAjax/show.ajax';
 				break;
@@ -102,8 +100,9 @@ class personAjaxController extends \HappyPuppy\Controller
 		{
 			case "ajax":
 				$this->layout = false;
-				//xxx$this->view_template = $_ENV["app"]->root().'views/personAjax/edit.ajax.php';
-			break;
+				$this->view_template = 'personAjax/edit.ajax';
+				$this->person->name = $this->person->name." - Retrieved w/ Ajax";
+				break;
 		}
 	}
 	public function update()
