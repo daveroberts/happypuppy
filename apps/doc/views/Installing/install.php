@@ -1,4 +1,11 @@
 <h1>Installing Happy Puppy</h1>
+Video - installation
+
+show installation of happy puppy
+show folders
+show configuration files
+Show configuration working
+
 <h2>Pre-requisites</h2>
 <ol>
 <li>Install Apache and PHP.  For this tutorial I'll use <a href="http://www.apachefriends.org/en/xampp.html">XAMPP</a></li>

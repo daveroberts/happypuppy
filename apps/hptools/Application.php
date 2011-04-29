@@ -10,7 +10,7 @@ class Application extends \HappyPuppy\Application
 	{
 		$this->title = "Happy Puppy Tools";
 	}
-	// This application can't be called in production
+	// This application can't be run in production
 	public function isDebugApp(){ return true; }
 }
 

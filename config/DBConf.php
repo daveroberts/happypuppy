@@ -8,7 +8,7 @@ class DBConf
 			"hostname"	=>"localhost",
 			"dbname"	=>"",
 			"dbusername"=>"root",
-			"dbpassword"=>""
+			"dbpassword"=>"netwitness"
 		);
 	}
 	static function GamesDB(){

@@ -1,1 +1,1 @@
-<?php echo  textbox('person[name]', $person->name, 'person_name', array('style'=>'width: 250px;')) ?>
+<?php echo textbox('person[name]', $person->name, 'person_name', array('style'=>'width: 250px;')) ?>

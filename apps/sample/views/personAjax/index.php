@@ -21,12 +21,18 @@ $this-&gt;people = array_slice($this-&gt;people, 0, 10);
 switch ($this-&gt;responds_to)
 {
 	case "xml":
-		header("Content-type: text/xml"); 
-		$this-&gt;renderText(XMLlib::toXML("people", $this-&gt;people));
+		// the "correct" way to turn a collection into XML is to use
+		// the collectionToXML method of the \HappyPuppy\Model class
+		//$xml = Person::collectionToXML($this-&gt;people);
+		
+		// in the source code, since we're not using the DB, we
+		// don't use the model class, and thus the following code is used.
+		//$xml = XMLlib::toXML("people", $this-&gt;people);
+		
+		$this-&gt;renderXML($xml);
 		break;
 	case "json":
-		header('Content-Type: text/plain'); // plain text file
-		$this-&gt;renderText(json_encode($this-&gt;people));
+		$this-&gt;renderJSON(json_encode($this-&gt;people));
 		break;
 }
 </pre>

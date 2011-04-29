@@ -1,3 +1,5 @@
 <h2>Static Content</h2>
 
-Files such as 
+Video - Static content
+
+Two content folders, explain each

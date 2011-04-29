@@ -7,17 +7,25 @@ class personController extends \HappyPuppy\Controller
 	// list and new are keywords in php, so we append an underscore
 	public function _list()
 	{
-		$this->people = person::getAll();
+		$this->people = person::All();
+		// normally this would hit the database and bring back all rows in the person or people table.
+		// the All method is defined in \HappyPuppy\model
+		// but here, we're using a dummy method in the person class
+	}
+	public function _new()
+	{
+		$this->person = new Person();
+		$this->f = new \HappyPuppy\form($this->person);
 	}
 	public function create()
 	{
 		setflash("Dummy create method called (".$_POST['person']['name'].")");
-		$this->redirect('/person/list');
+		$this->redirectTo('list');
 	}
 	public function show($id)
 	{
-		// $this->person = person::get($id);
-		$this->person = person::getFakePerson();
+		// $this->person = Person::Get($id); // to get from DB
+		$this->person = Person::GetFakePerson($id);
 	}
 	public function destroy($id)
 	{
@@ -26,13 +34,13 @@ class personController extends \HappyPuppy\Controller
 	}
 	public function edit($id)
 	{
-		// $this->person = person::get($id);
-		$this->person = array('id'=>$id, 'name'=>'Fake Person'.' '.$id);
+		// $this->person = Person::Get($id); // to get from DB
+		$this->person = Person::GetFakePerson($id);
 		$this->f = new \HappyPuppy\form($this->person);
 	}
 	public function update()
 	{
-		setflash("Dummy update method called (#".$_POST['person']['id'].")");
+		setflash("Dummy update method called (".$_POST['person']['name'].")");
 		$this->redirectTo("list");
 	}
 	public function searchby()

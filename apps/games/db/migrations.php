@@ -13,7 +13,7 @@ class Migrations
 	}
 	static function From1To2()
 	{
-		\HappyPuppy\DBMigration::CreateTable("games", "games", array("name"=>"string", "system_id"=>"int"));
+		\HappyPuppy\DBMigration::CreateTable("games", "games", array("name"=>"string", "system_id"=>"int;0;0"));
 	}
 	static function From2To1()
 	{
@@ -29,7 +29,7 @@ class Migrations
 	}
 	static function From3To4()
 	{
-		\HappyPuppy\DBMigration::AddColumn("games", "games", "order", "int");
+		\HappyPuppy\DBMigration::AddColumn("games", "games", "order", "int;1");
 	}
 	static function From4To3()
 	{

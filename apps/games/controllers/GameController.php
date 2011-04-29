@@ -20,8 +20,7 @@ class GameController extends \HappyPuppy\Controller
 				$this->text_only = true;
 				break;
 			case 'xml':
-				header("Content-type: text/xml"); 
-				$this->renderText(Game::collectionToXML($this->games, array("platform")));
+				$this->renderXml(Game::collectionToXML($this->games, array("system"), array("system_id", "order")));
 				break;
 		}
 	}
@@ -53,13 +52,10 @@ class GameController extends \HappyPuppy\Controller
 	{
 		$this->game = Game::buildFromPost($_POST["Game"]);
 		$success = $this->game->save($error);
-		if ($success)
-		{
+		if ($success) {
 			setflash("G updated successfully");
 			$this->redirectTo("list");
-		}
-		else
-		{
+		} else {
 			setflash("Could not update G");
 			$this->games = Game::All();
 			$this->systems = System::All();
@@ -107,7 +103,7 @@ class GameController extends \HappyPuppy\Controller
 			$order++;
 		}
 		$data = array('success'=>$success);
-		$this->renderText(json_encode($data));
+		$this->renderJSON(json_encode($data));
 	}
 }
 

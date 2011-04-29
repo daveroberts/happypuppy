@@ -1,7 +1,7 @@
 <?php
 
 namespace sample;
-class AjaxTestController extends \HappyPuppy\Controller
+class AjaxDropdownController extends \HappyPuppy\Controller
 {
 	public function defaultAction(){ return "dropdown"; }
 	public function dropdown()
@@ -23,17 +23,12 @@ class AjaxTestController extends \HappyPuppy\Controller
 		} else {
 			$flash = "Could not add " . $new_option . ". Color must begin with a letter.";
 		}
-		
-		switch ($this->responds_to)
-		{
-			case "ajax":
-				$return = array('success'=>$success, flash=>$flash." Added with Ajax", 'new_option'=>$new_option, 'options'=>$options);
-				$this->renderText(json_encode($return));
-				break;
-			default:
-				setflash($flash." Added without Ajax");
-				$this->redirectToAction("dropdown");
-				break;
+		if (isAjaxRequest()){
+			$return = array('success'=>$success, flash=>$flash." Added with Ajax", 'new_option'=>$new_option, 'options'=>$options);
+			$this->renderJSON(json_encode($return));
+		} else {
+			setflash($flash." Added without Ajax");
+			$this->redirectToAction("dropdown");
 		}
 	}
 }

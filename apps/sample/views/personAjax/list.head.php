@@ -14,7 +14,7 @@
 			{
 				$('#newform-load').show();
 				// get the add person partial from the server
-				$('#newform').load("/sample/personAjax/new.ajax", {},
+				$('#newform').load("/sample/personAjax/new", {},
 				function(){
 					$('#newform-load').hide();
 					$('#newform').slideDown();
@@ -33,7 +33,7 @@
 			$('.show_person_detail,.edit_person_detail').remove();
 			$('#person_ajax_loading_'+person_id).show();
 			$.ajax({
-				url: "/sample/personAjax/show/"+person_id+".ajax",
+				url: "/sample/personAjax/show/"+person_id,
 				success: function(html)
 				{
 					$('#person_ajax_loading_'+person_id).hide();
@@ -50,7 +50,7 @@
 			$('.show_person_detail,.edit_person_detail').remove();
 			$('#person_ajax_loading_'+person_id).show();
 			$.ajax({
-				url: "/sample/personAjax/edit/"+person_id+".ajax",
+				url: "/sample/personAjax/edit/"+person_id,
 				success: function(html)
 				{
 					$('#person_ajax_loading_'+person_id).hide();
@@ -74,7 +74,7 @@
 			if (confirm('Are you sure you want to delete this person?'))
 			{
 				var person_id = this.id.replace(/person_delete_link_/, "");
-				$.post("/sample/personAjax/destroy.ajax", {id: person_id }, function(html){
+				$.post("/sample/personAjax/destroy", {id: person_id }, function(html){
 					var success = html.substring(0,1);
 					var message = html.substring(1);
 					if (success == 1)

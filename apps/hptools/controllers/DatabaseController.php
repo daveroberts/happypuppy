@@ -21,8 +21,9 @@ class DatabaseController extends \HappyPuppy\Controller
 			$this->redirectTo("/Database/migrate/".$app);
 		}
 		$version = $_POST["version"];
-		\HappyPuppy\DBMigrationExec::MigrateDB($app, $version);
-		setflash("Database migrated to version ".$version);
+		$message = "";
+		$success = \HappyPuppy\DBMigrationExec::MigrateDB($app, $version, $message);
+		setflash("Database migrated to version ".$version." ".$message);
 		$this->redirectTo("/Database/migrate/".$app);
 	}
 }

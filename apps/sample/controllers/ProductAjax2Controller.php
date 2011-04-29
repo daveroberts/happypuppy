@@ -1,7 +1,7 @@
 <?php
 
 namespace sample;
-class ProductAjaxController extends \HappyPuppy\Controller
+class ProductAjax2Controller extends \HappyPuppy\Controller
 {
 	function defaultAction(){ return "list"; }
 
@@ -26,7 +26,7 @@ class ProductAjaxController extends \HappyPuppy\Controller
 		
 		if (isAjaxRequest()) {
 			$this->layout = false;
-			$this->view_template = "ProductAjax/_products";
+			$this->view_template = "ProductAjax2/_products";
 		}
 	}
 }
