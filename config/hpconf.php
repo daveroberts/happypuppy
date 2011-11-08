@@ -4,13 +4,13 @@ namespace HappyPuppy;
 	
 	// Only apps listed here will be processed by Happy Puppy
 	// Note that hptools will only work when the environment is set to Dev
-	$_ENV["config"]["apps"] = array("hptools", "doc", "sample", "games", "scratch");
+	$_ENV["config"]["apps"] = array("hptools", "doc", "sample", "games", "scratch", "league", "wiki");
 	
 	// routes normally look like http://hostname/appname/controller/action
 	// setting this removes the appname http://hostname/appname/controller/action
 	// Note you can further set a default controller for each application,
 	// and you can set a default action for each controller
-	$_ENV["config"]["default_app"] = "doc";
+	$_ENV["config"]["default_app"] = "wiki";
 	
 	// different environments
 	class Environment
@@ -47,4 +47,14 @@ namespace HappyPuppy;
 	// will change the setting for ONLY that application
 	// changing this value here can potentially break other happy puppy apps!
 	$_ENV["config"]["plural_db_tables"] = true; // warning, read above!!!
+	
+	// show happy puppy debug info
+	// When set to true, Happy Puppy will run your page twice
+	// Once to display the actual output
+	// and another time to display information about the page that was generated
+	// such as which routes were run, what DB calls were made, etc.
+	// Happy puppy displays teh two pages, actual and info, on one frameset
+	// If you are using a PHP debugger, such as xdebug or zend engine
+	// it's recommended to keep this value false, as your route is run twice
+	$_ENV["config"]["show_debug_info"] = false;
 ?>

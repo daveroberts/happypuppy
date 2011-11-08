@@ -1,0 +1,1 @@
+﻿<div><?php $champion->name ?><?php $champion->avg_percent ?></div>

@@ -26,7 +26,7 @@ class GameController extends \HappyPuppy\Controller
 	}
 	function create()
 	{
-		$this->game = Game::buildFromPost($_POST["Game"]);
+		$this->game = Game::BuildFromPost($_POST["Game"]);
 		$success = $this->game->save($error);
 		if ($success)
 		{
@@ -46,11 +46,17 @@ class GameController extends \HappyPuppy\Controller
 	function edit($game_id)
 	{
 		$this->game = Game::Get($game_id);
+		if ($this->game == null)
+		{
+			setflash("Could not find game with ID: ".$game_id);
+			$this->redirectTo("list");
+		}
 		$this->f = new \HappyPuppy\form($this->game);
 	}
 	function update()
 	{
-		$this->game = Game::buildFromPost($_POST["Game"]);
+		$this->game = Game::BuildFromPost($_POST["Game"]);
+		$debug = array();
 		$success = $this->game->save($error);
 		if ($success) {
 			setflash("G updated successfully");
@@ -59,8 +65,7 @@ class GameController extends \HappyPuppy\Controller
 			setflash("Could not update G");
 			$this->games = Game::All();
 			$this->systems = System::All();
-			$this->gf = new \HappyPuppy\form($this->game);
-			$this->sf = new \HappyPuppy\form(new System());
+			$this->f = new \HappyPuppy\form($this->game);
 			$this->view_template = "game/edit";
 		}
 	}

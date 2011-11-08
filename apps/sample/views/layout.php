@@ -8,7 +8,7 @@
 	<link rel="stylesheet" href="/sample/css/style.css" type="text/css" />
 	<link rel="stylesheet" href="/sample/css/positioning.css" type="text/css" />
 	<link rel="stylesheet" href="/sample/css/color.css" type="text/css" />
-	<script type="text/javascript" src="/sample/js/jquery-1.4.2.min.js"></script>
+	<script type="text/javascript" src="/js/jquery-1.4.2.min.js"></script>
 	<script type="text/javascript" src="/sample/js/jquery.json-2.2.min.js"></script>
 	<script type="text/javascript" src="/sample/js/jquery.ba-bbq.min.js"></script>
 	<script type="text/javascript">

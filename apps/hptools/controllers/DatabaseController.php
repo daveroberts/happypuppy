@@ -1,9 +1,11 @@
 <?php
 
 namespace hptools;
+/**  
+ * !DefaultAction ListApps
+ * */
 class DatabaseController extends \HappyPuppy\Controller
 {
-	function defaultAction(){ return "ListApps"; }
 	function ListApps()
 	{
 		$this->apps = $_ENV["config"]["apps"];

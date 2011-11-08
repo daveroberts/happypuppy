@@ -5,6 +5,10 @@ class DatabaseController extends \HappyPuppy\Controller
 {
 	function Setup(){}
 	function Migrations(){}
+	/**  
+     * !Route GET, /Database/Models/FirstSteps
+     * */ 
+	function BeginningModels(){}
 	function Models(){}
 	/**  
      * !Route GET, /Database/Models/API
@@ -12,6 +16,7 @@ class DatabaseController extends \HappyPuppy\Controller
 	function ModelsAPI(){}
 	function Relations(){}
 	function Forms(){}
+	function XML(){}
 }
 
 ?>

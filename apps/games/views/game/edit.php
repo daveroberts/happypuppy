@@ -1,4 +1,3 @@
-<?php echo $f->hiddenid() ?>
 <div>
 	<?php echo $f->start("update") ?>
 		<?php echo PhpRender::render('game/_form', "f", $f) ?>

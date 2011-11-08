@@ -5,7 +5,7 @@ class SystemController extends \HappyPuppy\Controller
 {
 	function create()
 	{
-		$this->system = System::buildFromPost($_POST["System"]);
+		$this->system = System::BuildFromPost($_POST["System"]);
 		$success = $this->system->save($error);
 		if ($success)
 		{
@@ -27,7 +27,8 @@ class SystemController extends \HappyPuppy\Controller
 		if (isset($_POST["System"]["id"]) && $_POST["System"]["id"] == $system_id)
 		{
 			$this->system = System::Get($_POST["System"]["id"]);
-			$success = $this->system->destroy(false);
+			$debug = array();
+			$success = $this->system->destroy(false, $debug);
 			if ($success)
 			{
 				setflash("Sys deleted successfully");

@@ -1,5 +1,12 @@
 db forms
+<p>Next example: forms building off of this
 
+1) Explain no ajax yet
+2) create / edit teachers.  Delete will be shown later
+3) create / edit courses
+4) create / edit students.
+5) change enrollment in courses</p>
+<p>After an error, here's what you do in your controller to repopulate the form</p>
 <p>In the controller</p>
 <pre class="sh_php">
 function _new()
@@ -22,6 +29,7 @@ $f-&gt;input("system")
 
 $f-&gt;submit("Add New Game")
 </pre>
+Radio: setDescription
 <p>Back to the controller</p>
 <pre class="sh_php">
 function Create()

@@ -1,4 +1,6 @@
 <h2>Creating a new Happy Puppy application.</h2>
+your app name is the same as your folder name
+all your files will be namespaced to your app name
 <p>This tutorial requires that you've <?php echo link_to("installed Happy Puppy", "/Installing/install") ?></p>
 <p>1) Create a folder in your apps folder.  Name it with your app name (must be all lowercase).  For this example I'll use the name myapp</p>
 <p>2) Create a file in your "myapp" folder named myappApplication.php.  You can copy the sampleApplication.php file from the sample application that comes with Happy Puppy, or you can put this content inside:</p>

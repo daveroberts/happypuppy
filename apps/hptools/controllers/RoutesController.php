@@ -1,9 +1,11 @@
 <?php
 
 namespace hptools;
+/**  
+ * !DefaultAction list
+ * */
 class RoutesController extends \HappyPuppy\Controller
 {
-	function defaultAction(){ return "list"; }
 	function _list()
 	{
 		$routetree = \HappyPuppy\Cache::get("routetree");

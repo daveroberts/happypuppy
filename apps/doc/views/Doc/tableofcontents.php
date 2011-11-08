@@ -9,7 +9,9 @@
 <ol>
 <li><?php echo link_to("Setting up the database", "/Database/Setup")?></li>
 <li><?php echo link_to("Using migrations", "/Database/Migrations")?></li>
-<li><?php echo link_to("Creating a model", "/Database/Models")?></li>
+<li><?php echo link_to("Intro to Models", "/Database/Models/FirstSteps")?></li>
+<li><?php echo link_to("Defining your Models", "/Database/Models")?></li>
+<li><?php echo link_to("Models API", "/Database/Models/API")?></li>
 <li><?php echo link_to("Relations", "/Database/Relations")?></li>
 <li><?php echo link_to("Forms (Saving and updating your models)", "/Database/Forms")?></li>
 </ol>

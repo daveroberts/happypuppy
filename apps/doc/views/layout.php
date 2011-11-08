@@ -13,13 +13,19 @@
   <script type="text/javascript" src="/sample/js/jquery.form.js"></script>
   <script type="text/javascript" src="/doc/js/sh_main.min.js"></script>
   <script type="text/javascript" src="/doc/js/sh_php.min.js"></script>
+  <script type="text/javascript" src="/doc/js/sh_xml.min.js"></script>
+  <script type="text/javascript" src="/doc/js/jquery.scrollTo-1.4.2-min.js"></script>
+  <style type="text/css">
+	.highlight{ background-color: #DD99FF; }
+	.code{ font-family: monospace; }
+  </style>
   <?php echo $head?>
 </head>
 <body onload="sh_highlightDocument();">
 	<div id='page'>
 		<h1>Happy Puppy</h1>
 		<div id='sidebar'>
-			<img src="/sample/happypuppy.jpg.dontshow" alt="A very happy puppy" />
+			<img src="/sample/happypuppy.jpg" alt="A very happy puppy" />
 		</div>
 		<div id='content'>
 			<?php if (hasflash()){ ?><div id="flash"><?php echo getflash()?></div><?php }?>
