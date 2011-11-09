@@ -1,4 +1,4 @@
 happypuppy/*
 builds/*
 .idea/*
-apps/*/log/*
+*.log
