@@ -72,14 +72,7 @@ class ArticleController extends \HappyPuppy\Controller
 		}
 	}
 	
-	function create()
-	{
-		$article = Article::BuildFromPost($_POST["Article"]);
-		$article->save();
-		setflash("Article created");
-		$this->redirectTo("/article/show/".$article->name);
-	}
-	function update()
+	function update($id)
 	{
 		$this->article = Article::Get($id);
 		$this->article->build($_POST["Article"]);
