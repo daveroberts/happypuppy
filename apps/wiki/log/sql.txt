@@ -140,3 +140,23 @@ SELECT *  FROM Article  WHERE slug = 'movie'
 SELECT *  FROM Article  WHERE slug = 'movie' 
 2011-11-08T16:05:35-05:00
 SELECT *  FROM Article  WHERE slug = 'test' 
+2011-11-08T16:24:38-05:00
+SELECT *  FROM Article  WHERE slug = 'dave-roberts' 
+2011-11-08T16:24:40-05:00
+SELECT *  FROM Article  WHERE slug = 'dave-roberts' 
+2011-11-08T16:25:14-05:00
+SELECT *  FROM Article  WHERE slug = 'dave-roberts' 
+2011-11-08T16:25:16-05:00
+SELECT *  FROM Article  WHERE slug = 'cooking' 
+2011-11-08T16:58:36-05:00
+SELECT *  FROM Article  WHERE slug = 'cooking' 
+2011-11-08T16:58:49-05:00
+SELECT *  FROM Article  WHERE slug = 'movie' 
+2011-11-08T16:58:54-05:00
+SELECT *  FROM Article  WHERE slug = 'test' 
+2011-11-08T16:59:00-05:00
+SELECT *  FROM Article  WHERE slug = 'cooking' 
+2011-11-08T16:59:02-05:00
+SELECT *  FROM Article  WHERE slug = 'dave-roberts' 
+2011-11-08T16:59:05-05:00
+SELECT *  FROM Article  WHERE slug = 'cooking' 
