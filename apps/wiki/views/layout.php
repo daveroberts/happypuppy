@@ -20,6 +20,10 @@
 <h1>Wiki</h1>
 <div id='content'>
 <div id="flash" style="display:none;"><?php echo getflash() ?></div>
+<div>
+	<?= link_to("Article List", "/article/list") ?>
+	<?= link_to("New Article", "/article/new") ?>
+</div>
 <?php echo $content?>
 </div>
 </div>

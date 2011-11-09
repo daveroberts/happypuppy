@@ -12,7 +12,7 @@
 		<tbody>
 	<?php foreach($app_route_list as $route): ?>
 		<tr class="<?php echo  cycle("even", "odd")?>">
-			<td><?php echo  link_to_rawurl($route->GetRouteString(), $route->GetRouteString()); ?></td>
+			<td><?php echo link_to_hpurl($route->GetRouteString(), $route->GetRouteString()); ?></td>
 			<td><?php echo $route->controller?></td>
 			<td><?php echo $route->action?></td>
 		</tr>
