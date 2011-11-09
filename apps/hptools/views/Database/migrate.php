@@ -10,8 +10,8 @@
 
 <?php if ($MaxVersion > $DBVersion) { ?>
 <div>Your database can be updated to the latest version!<div>
-<div><?php echo \HappyPuppy\Form::start('/database/migrateTo/'.$app) ?><input type="hidden" name="version" value="<?php echo $MaxVersion?>" /><input type="submit" value="Update Database" /></form></div>
+<div><?php echo form_start('/database/migrateTo/'.$app) ?><input type="hidden" name="version" value="<?php echo $MaxVersion?>" /><input type="submit" value="Update Database" /></form></div>
 <?php } ?>
 <?php if ($MaxVersion > 0) { ?>
-<div><?php echo \HappyPuppy\Form::start('/database/migrateTo/'.$app) ?>Change database version to <input type="text" name="version" value="<?php echo $MaxVersion?>" /><input type="submit" value="Change Database Version" /></form></div>
+<div><?php echo form_start('/database/migrateTo/'.$app) ?>Change database version to <input type="text" name="version" value="<?php echo $MaxVersion?>" /><input type="submit" value="Change Database Version" /></form></div>
 <?php }?>

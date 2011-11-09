@@ -15,7 +15,7 @@ class PersonController extends \HappyPuppy\Controller
 	}
 	function create()
 	{
-		$this->person = Person::buildFromPost($_POST["Person"]);
+		$this->person = Person::BuildFromPost($_POST["Person"]);
 		$success = $this->person->save($error);
 		if ($success)
 		{
@@ -36,7 +36,7 @@ class PersonController extends \HappyPuppy\Controller
 	}
 	function update()
 	{
-		$this->person = Person::buildFromPost($_POST["Person"]);
+		$this->person = Person::BuildFromPost($_POST["Person"]);
 		$success = $this->person->save($error);
 		if ($success)
 		{

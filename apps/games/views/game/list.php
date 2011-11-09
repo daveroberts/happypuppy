@@ -10,7 +10,9 @@
 	</thead>
 	<tbody>
 		<?php foreach($games as $game):?>
-			<?php echo PhpRender::render('game/_game', "game", $game) ?>
+			<tr id="game_<?php echo $game->id?>" class="gameTableRow">
+				<?php echo PhpRender::render('game/_game', "game", $game) ?>
+			</tr>
 		<?php endforeach;?>
 	<tbody>
 </table>
@@ -29,7 +31,9 @@
 		</thead>
 		<tbody>
 			<?php foreach($system->games as $game): ?>
-				<?php echo PhpRender::render('game/_game', "game", $game) ?>
+				<tr class="gameTableRow">
+					<?php echo PhpRender::render('game/_game', "game", $game) ?>
+				</tr>
 			<?php endforeach; ?>
 		</tbody>
 	</table>

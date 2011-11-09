@@ -4,21 +4,21 @@
   # cached copy in the temp folder
   RewriteCond %{REQUEST_URI} ^(.*)/$
   RewriteCond %{DOCUMENT_ROOT}/temp/full_pages%{REQUEST_URI}index.html -f
-  RewriteRule !(^index\.php|^temp/full_pages/) /temp/full_pages%{REQUEST_URI}index.html [L]
+  RewriteRule !(^index\.php|^temp/full_pages/) /temp/full_pages%{REQUEST_URI}index.html [QSA,L]
   RewriteCond %{DOCUMENT_ROOT}/temp/full_pages%{REQUEST_URI}.html -f
-  RewriteRule !(^index\.php|^temp/full_pages/) /temp/full_pages%{REQUEST_URI}.html [L]
+  RewriteRule !(^index\.php|^temp/full_pages/) /temp/full_pages%{REQUEST_URI}.html [QSA,L]
   
   # content in the app folders
   RewriteCond %{REQUEST_URI} ^/(.*?)/(.*)$
   RewriteCond %{DOCUMENT_ROOT}/apps/$1/content/$2 -f
-  RewriteRule ^(.*?)/(.*)$ /apps/$1/content/$2 [L]
+  RewriteRule ^(.*?)/(.*)$ /apps/$1/content/$2 [QSA,last]
   
   # content in the content folder
   RewriteCond %{DOCUMENT_ROOT}/content%{REQUEST_URI} -f
-  RewriteRule !(^index\.php|^content/) /content%{REQUEST_URI} [L]
+  RewriteRule !(^index\.php|^content/) /content%{REQUEST_URI} [L,QSA]
   
   # everything else!
-  RewriteCond %{REQUEST_FILENAME} !-d
+  #RewriteCond %{REQUEST_FILENAME} !-d
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteRule ^(.*)$ index.php?url=$1 [QSA,L]
 
