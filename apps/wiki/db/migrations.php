@@ -23,6 +23,14 @@ class Migrations
 		\HappyPuppy\DBMigration::DropTable("wiki", "article_links");
 		\HappyPuppy\DBMigration::DropTable("wiki", "user");
 	}
+	static function From2To3()
+	{
+		\HappyPuppy\DBMigration::CreateTable("wiki", "account", array("username"=>"string", "password"=>"string"));
+	}
+	static function From3To2()
+	{
+		\HappyPuppy\DBMigration::DropTable("wiki", "account");
+	}
 }
 
 ?>

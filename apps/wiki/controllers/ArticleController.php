@@ -1,17 +1,23 @@
 <?php
 
 namespace wiki;
+
 class ArticleController extends \HappyPuppy\Controller
 {
-	function index()
+	function __init()
 	{
 	}
-	
+
+	function index()
+	{
+		$this->redirectTo("/article/show/MainPage");
+	}
+
 	function _list()
 	{
 		$this->articles = Article::All();
 	}
-	
+
 	function _new()
 	{
 		$this->article = new Article();
@@ -21,7 +27,7 @@ class ArticleController extends \HappyPuppy\Controller
 		}
 		$this->f = new \HappyPuppy\form($this->article);
 	}
-	
+
 	function create()
 	{
 		$article = new Article();
@@ -30,10 +36,7 @@ class ArticleController extends \HappyPuppy\Controller
 		setflash("Article created");
 		$this->redirectTo("/article/show/".$article->name);
 	}
-	
-	/**
-	* !Route GET, /article/show/$slug
-	*/
+
 	function show($slug)
 	{
 		$articles = Article::Where("slug = '?'", sluggable($slug));
@@ -54,12 +57,14 @@ class ArticleController extends \HappyPuppy\Controller
 			$this->article = reset($articles);
 		}
 	}
-	
-	/**
-	* !Route GET, /article/edit/$slug
-	*/
+
 	function edit($slug)
 	{
+		if (cant("edit", "articles", $reason))
+		{
+			setflash($reason);
+			$this->redirectTo("/article");
+		}
 		$articles = Article::Where("slug = '?'", sluggable($slug));
 		if ($articles == null)
 		{
@@ -71,9 +76,14 @@ class ArticleController extends \HappyPuppy\Controller
 			$this->f = new \HappyPuppy\form($this->article);
 		}
 	}
-	
+
 	function update($id)
 	{
+		if (cant("edit", "articles", $reason))
+		{
+			setflash($reason);
+			$this->redirectTo("/article");
+		}
 		$this->article = Article::Get($id);
 		$this->article->build($_POST["Article"]);
 		$success = $this->article->save();
