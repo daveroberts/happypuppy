@@ -22,7 +22,6 @@ function current_user()
 function can($action, $object=null, &$reason="")
 {
 	$current_user = current_user();
-	if ($current_user == null){ return false; }
 	if (is_string($object))
 	{
 		$classname = $object;

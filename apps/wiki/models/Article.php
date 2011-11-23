@@ -56,7 +56,12 @@ class Article extends \HappyPuppy\Model
 	{
 		if (strcmp($action, 'edit') == 0)
 		{
-			return logged_in();
+			if (!logged_in())
+			{
+				$reason = "You are not logged in";
+				return false;
+			}
+			return true;
 		}
 	}
 }

@@ -60,9 +60,10 @@ class ArticleController extends \HappyPuppy\Controller
 
 	function edit($slug)
 	{
+		$reason = "";
 		if (cant("edit", "articles", $reason))
 		{
-			setflash($reason);
+			setflash("You are not allowed to edit articles because: ".$reason);
 			$this->redirectTo("/article");
 		}
 		$articles = Article::Where("slug = '?'", sluggable($slug));
