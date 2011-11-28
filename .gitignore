@@ -2,3 +2,4 @@ happypuppy/*
 builds/*
 .idea/*
 *.log
+config/dbconf.php
