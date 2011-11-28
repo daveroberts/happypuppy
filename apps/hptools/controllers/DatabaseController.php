@@ -8,11 +8,16 @@ class DatabaseController extends \HappyPuppy\Controller
 {
 	function ListApps()
 	{
-		$this->apps = $_ENV["config"]["apps"];
+		$this->apps = array();
+		$handle = opendir($_ENV['docroot'].'/apps/');
+		while (false !== ($file = readdir($handle))) {
+			if (strcmp(substr($file, 0, 1), '.') == 0){ continue; }
+			$this->apps[] = $file;
+		}
 	}
 	function migrate($app)
 	{
-		$this->DBVersion = \HappyPuppy\DBMigrationExec::Version($app);
+		$this->DBVersion = \HappyPuppy\DBMigrationExec::GetVersion(\HappyPuppy\DBConnection::GetDBName($app));
 		$this->MaxVersion = \HappyPuppy\DBMigrationExec::HighestVersionAvailable($app);
 		$this->app = $app;
 	}
@@ -25,7 +30,14 @@ class DatabaseController extends \HappyPuppy\Controller
 		$version = $_POST["version"];
 		$message = "";
 		$success = \HappyPuppy\DBMigrationExec::MigrateDB($app, $version, $message);
-		setflash("Database migrated to version ".$version." ".$message);
+		if ($success)
+		{
+			setflash("Database migrated to version ".$version." ".$message);
+		}
+		else
+		{
+			setflash("Error migrating database\n".$message);
+		}
 		$this->redirectTo("/Database/migrate/".$app);
 	}
 }

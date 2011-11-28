@@ -16,6 +16,14 @@
   <?php echo $head?>
 </head>
 <body>
+<div style="text-align: right;">
+	<?php if (\wiki\logged_in()): ?>
+		<span>Currently logged in as <?php echo \wiki\current_user()->username?></span>
+		<span><?php echo link_to("Log out", "/logout") ?></span>
+	<?php else: ?>
+		<span><?php echo link_to("Log in", "/login") ?></span>
+	<?php endif; ?>
+</div>
 <div id='page'>
 <h1>Wiki</h1>
 <div id='content'>

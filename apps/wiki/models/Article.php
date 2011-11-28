@@ -6,13 +6,13 @@ class Article extends \HappyPuppy\Model
 	function __construct(){
 		parent::__construct();
 	}
-	
+
 	public function save()
 	{
 		$this->slug = sluggable($this->name);
 		return parent::save();
 	}
-	
+
 	public function getHTML()
 	{
 		$html = $this->body;
@@ -20,7 +20,7 @@ class Article extends \HappyPuppy\Model
 		$html = markdown($html);
 		return $html;
 	}
-	
+
 	private function makeWikiLinks($text)
 	{
 		$pattern = '/\[\[(.*?)\]\]/';
@@ -42,7 +42,7 @@ class Article extends \HappyPuppy\Model
 		}
 		return $html;
 	}
-	
+
 	public function __get($name)
 	{
 		if (strcmp($name, "slug") == 0)
@@ -50,6 +50,19 @@ class Article extends \HappyPuppy\Model
 			return sluggable($this->name);
 		}
 		return parent::__get($name);
+	}
+
+	public function bless($current_user, $action, &$reason)
+	{
+		if (strcmp($action, 'edit') == 0)
+		{
+			if (!logged_in())
+			{
+				$reason = "You are not logged in";
+				return false;
+			}
+			return true;
+		}
 	}
 }
 

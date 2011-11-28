@@ -1,6 +1,6 @@
 <?php
 namespace wiki;
-/**  
+/**
  * !DefaultController article
  * */
 class Application extends \HappyPuppy\Application
@@ -11,6 +11,7 @@ class Application extends \HappyPuppy\Application
 		$_ENV["config"]["plural_db_tables"] = false;
 		require_once('lib/markdown.php');
 		require_once('lib/helper.php');
+		require_once('lib/auth.php');
 	}
 }
 

@@ -1,17 +1,41 @@
 <?php
 
 namespace wiki;
+
 class ArticleController extends \HappyPuppy\Controller
 {
-	function index()
+	function __init()
 	{
 	}
-	
+
+	function index()
+	{
+		$dbh = new \PDO("mysql:host=localhost;dbname=wiki", 'wiki', 'J9Zungb3qVUh7zP5PN8WQCgatR9pBqgWJNwUG4qZKTkKnm3u');
+		$dbh->setAttribute(\PDO::ATTR_AUTOCOMMIT,FALSE);
+		$dbh->beginTransaction();
+		$sql = "CREATE TABLE IF NOT EXISTS `d` (`id` int(11) NOT NULL AUTO_INCREMENT, PRIMARY KEY (`id`)) ENGINE=InnoDB DEFAULT CHARSET=latin1;";
+		$dbh->exec($sql);
+		/*$stm = $dbh->prepare($sql);
+		$stm->execute(null);*/
+		$sql = "CREATE TABLE IF NOT EXISTS `e` (`id` int(11) NOT NULL AUTO_INCREMENT, PRIMARY KEY (`id`)) ENGINE=InnoDB DEFAULT CHARSET=latin1;";
+		$dbh->exec($sql);
+		/*$stm = $dbh->prepare($sql);
+		$stm->execute(null);*/
+		$sql = "CREATE TABLE IF NOT EXISTS `f` (`id` int(11) NOT NULL AUTO_INCREMENT, PRIMARY KEY (`id`)) ENGINE=InnoDB DEFAULT CHARSET=latin1;";
+		$dbh->exec($sql);
+		/*$stm = $dbh->prepare($sql);
+		$stm->execute(null);*/
+		$dbh->rollBack();
+		$dbh->setAttribute(\PDO::ATTR_AUTOCOMMIT,TRUE);
+		$this->renderText("Done");
+		//$this->redirectTo("/article/show/MainPage");
+	}
+
 	function _list()
 	{
 		$this->articles = Article::All();
 	}
-	
+
 	function _new()
 	{
 		$this->article = new Article();
@@ -21,7 +45,7 @@ class ArticleController extends \HappyPuppy\Controller
 		}
 		$this->f = new \HappyPuppy\form($this->article);
 	}
-	
+
 	function create()
 	{
 		$article = new Article();
@@ -30,10 +54,7 @@ class ArticleController extends \HappyPuppy\Controller
 		setflash("Article created");
 		$this->redirectTo("/article/show/".$article->name);
 	}
-	
-	/**
-	* !Route GET, /article/show/$slug
-	*/
+
 	function show($slug)
 	{
 		$articles = Article::Where("slug = '?'", sluggable($slug));
@@ -54,12 +75,15 @@ class ArticleController extends \HappyPuppy\Controller
 			$this->article = reset($articles);
 		}
 	}
-	
-	/**
-	* !Route GET, /article/edit/$slug
-	*/
+
 	function edit($slug)
 	{
+		$reason = "";
+		if (cant("edit", "articles", $reason))
+		{
+			setflash("You are not allowed to edit articles because: ".$reason);
+			$this->redirectTo("/article");
+		}
 		$articles = Article::Where("slug = '?'", sluggable($slug));
 		if ($articles == null)
 		{
@@ -71,9 +95,14 @@ class ArticleController extends \HappyPuppy\Controller
 			$this->f = new \HappyPuppy\form($this->article);
 		}
 	}
-	
+
 	function update($id)
 	{
+		if (cant("edit", "articles", $reason))
+		{
+			setflash($reason);
+			$this->redirectTo("/article");
+		}
 		$this->article = Article::Get($id);
 		$this->article->build($_POST["Article"]);
 		$success = $this->article->save();
