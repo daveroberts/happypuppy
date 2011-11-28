@@ -8,7 +8,7 @@ class DBConf
 			"hostname"	=>"localhost",
 			"dbname"	=>"",
 			"dbusername"=>"root",
-			"dbpassword"=>"gdais"
+			"dbpassword"=>"netwitness"
 		);
 	}
 }

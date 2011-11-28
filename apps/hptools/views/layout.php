@@ -4,23 +4,23 @@
 <title><?php echo $title?></title>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" /> 
 <script type="text/javascript" src="/js/jquery-1.4.2.min.js"></script>
-<style type="text/css">
-	body{ font-family: sans-serif; }
-	a{ border: 2px solid transparent; color: #0000CC; text-decoration: none; }
-	a:visited{ color: #CC00CC; }
-	.highlightCell{ background-color: red; }
-	.even{ background-color: #FFFFFF; }
-	.odd{ background-color: #CCCCCC; }
-</style>
+<?php echo css("style") ?>
 <?php echo $head?>
 </head>
-<body style="background-color: #3333AA;">
-<div style="background-color: white; border: 4px solid gray; margin: 2em 3em; padding: 1em;">
-	<h1>Happy Puppy Tools</h1>
-	<?php if (hasflash()){ ?><div id="flashmessage"><?php echo getflash()?></div><?php } ?>
-	<div><?php echo link_to("Database Migrations", "/database")?></div>
-	<div><?php echo link_to("Routes", "/routes")?></div>
-	<?php echo $content?>
-</div>
+<body>
+	<div id="conteneur">
+		<div id="header">Happy Puppy Tools</div>
+		<div id="haut">
+			<ul class="menuhaut">
+				<li><?php echo link_to("Database Migrations", "/database")?></li>
+				<li><?php echo link_to("Routes", "/routes")?></li>
+			</ul>
+		</div>
+
+		<div id="centre">
+			<?php if (hasflash()){ ?><div id="flashmessage" style="white-space: pre;"><?php echo getflash()?></div><?php } ?>
+			<?php echo $content?>
+		</div>
+	</div>
 </body>
 </html>
