@@ -9,7 +9,7 @@
 </head>
 <body>
 	<div id="conteneur">
-		<div id="header">Happy Puppy Tools</div>
+		<div id="header">Tools</div>
 		<div id="haut">
 			<ul class="menuhaut">
 				<li><?php echo link_to("Database Migrations", "/database")?></li>

@@ -1,21 +1,21 @@
 <IfModule mod_rewrite.c>
   RewriteEngine On
 
-  # cached copy in the temp folder
-  RewriteCond %{REQUEST_URI} ^(.*)/$
-  RewriteCond %{DOCUMENT_ROOT}/temp/full_pages%{REQUEST_URI}index.html -f
-  RewriteRule !(^index\.php|^temp/full_pages/) /temp/full_pages%{REQUEST_URI}index.html [QSA,L]
-  RewriteCond %{DOCUMENT_ROOT}/temp/full_pages%{REQUEST_URI}.html -f
-  RewriteRule !(^index\.php|^temp/full_pages/) /temp/full_pages%{REQUEST_URI}.html [QSA,L]
-  
   # content in the app folders
-  RewriteCond %{REQUEST_URI} ^/(.*?)/(.*)$
-  RewriteCond %{DOCUMENT_ROOT}/apps/$1/content/$2 -f
-  RewriteRule ^(.*?)/(.*)$ /apps/$1/content/$2 [QSA,last]
+  RewriteCond $1 ^(.*?)/(.*)$
+  RewriteCond apps/%1/content/%2 -F
+  RewriteRule (.*) apps/%1/content/%2 [QSA,last]
   
+  # cached copy in the temp folder
+  #RewriteCond %{REQUEST_URI} ^(.*)/$
+  #RewriteCond %{DOCUMENT_ROOT}/temp/full_pages%{REQUEST_URI}index.html -f
+  #RewriteRule !(^index\.php|^temp/full_pages/) /temp/full_pages%{REQUEST_URI}index.html [QSA,L]
+  #RewriteCond %{DOCUMENT_ROOT}/temp/full_pages%{REQUEST_URI}.html -f
+  #RewriteRule !(^index\.php|^temp/full_pages/) /temp/full_pages%{REQUEST_URI}.html [QSA,L]
+
   # content in the content folder
-  RewriteCond %{DOCUMENT_ROOT}/content%{REQUEST_URI} -f
-  RewriteRule !(^index\.php|^content/) /content%{REQUEST_URI} [L,QSA]
+  RewriteCond content/$1 -F
+  RewriteRule (.*) content/$1 [QSA,last]
   
   # everything else!
   #RewriteCond %{REQUEST_FILENAME} !-d

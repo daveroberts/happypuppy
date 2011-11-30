@@ -54,7 +54,7 @@ class Article extends \HappyPuppy\Model
 
 	public function bless($current_user, $action, &$reason)
 	{
-		if (strcmp($action, 'edit') == 0)
+		if (strcmp($action, 'change') == 0)
 		{
 			if (!logged_in())
 			{
@@ -63,6 +63,11 @@ class Article extends \HappyPuppy\Model
 			}
 			return true;
 		}
+	}
+	
+	public function authorize($current_user, $action, &$reason)
+	{
+		return $this->bless($current_user, $action, $reason);
 	}
 }
 

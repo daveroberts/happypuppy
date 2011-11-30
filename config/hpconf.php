@@ -56,5 +56,5 @@ namespace HappyPuppy;
 	// Happy puppy displays teh two pages, actual and info, on one frameset
 	// If you are using a PHP debugger, such as xdebug or zend engine
 	// it's recommended to keep this value false, as your route is run twice
-	$_ENV["config"]["show_debug_info"] = false;
+	$_ENV["config"]["show_debug_info"] = false; // can't override in application
 ?>

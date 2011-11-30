@@ -10,25 +10,7 @@ class ArticleController extends \HappyPuppy\Controller
 
 	function index()
 	{
-		$dbh = new \PDO("mysql:host=localhost;dbname=wiki", 'wiki', 'J9Zungb3qVUh7zP5PN8WQCgatR9pBqgWJNwUG4qZKTkKnm3u');
-		$dbh->setAttribute(\PDO::ATTR_AUTOCOMMIT,FALSE);
-		$dbh->beginTransaction();
-		$sql = "CREATE TABLE IF NOT EXISTS `d` (`id` int(11) NOT NULL AUTO_INCREMENT, PRIMARY KEY (`id`)) ENGINE=InnoDB DEFAULT CHARSET=latin1;";
-		$dbh->exec($sql);
-		/*$stm = $dbh->prepare($sql);
-		$stm->execute(null);*/
-		$sql = "CREATE TABLE IF NOT EXISTS `e` (`id` int(11) NOT NULL AUTO_INCREMENT, PRIMARY KEY (`id`)) ENGINE=InnoDB DEFAULT CHARSET=latin1;";
-		$dbh->exec($sql);
-		/*$stm = $dbh->prepare($sql);
-		$stm->execute(null);*/
-		$sql = "CREATE TABLE IF NOT EXISTS `f` (`id` int(11) NOT NULL AUTO_INCREMENT, PRIMARY KEY (`id`)) ENGINE=InnoDB DEFAULT CHARSET=latin1;";
-		$dbh->exec($sql);
-		/*$stm = $dbh->prepare($sql);
-		$stm->execute(null);*/
-		$dbh->rollBack();
-		$dbh->setAttribute(\PDO::ATTR_AUTOCOMMIT,TRUE);
-		$this->renderText("Done");
-		//$this->redirectTo("/article/show/MainPage");
+		$this->redirectTo("/article/show/MainPage");
 	}
 
 	function _list()
@@ -79,7 +61,7 @@ class ArticleController extends \HappyPuppy\Controller
 	function edit($slug)
 	{
 		$reason = "";
-		if (cant("edit", "articles", $reason))
+		if (cant("change", "articles", $reason))
 		{
 			setflash("You are not allowed to edit articles because: ".$reason);
 			$this->redirectTo("/article");
@@ -98,7 +80,7 @@ class ArticleController extends \HappyPuppy\Controller
 
 	function update($id)
 	{
-		if (cant("edit", "articles", $reason))
+		if (cant("change", "articles", $reason))
 		{
 			setflash($reason);
 			$this->redirectTo("/article");

@@ -17,7 +17,6 @@ class Migrations
 		\HappyPuppy\DBMigration::CreateTable("wiki", "user", array("name"=>"string", "password"=>"string"));
 		\HappyPuppy\DBMigration::CreateTable("wiki", "account", array("username"=>"string", "password"=>"string"));
 		\HappyPuppy\DB::AppExec("wiki", "INSERT INTO account (username, password) VALUES('dave', '1e56cd765cc9192c914aa39f21e2f91d593bffbe');");
-		\HappyPuppy\DB::AppExec("wiki", "SLCT * FRM SNTXERR");
 		\HappyPuppy\DBMigration::CreateTable("wiki", "blogpost", array("name"=>"string", "body"=>"text", 'written_on'=>"datetime"));
 	}
 	static function From2To1()
