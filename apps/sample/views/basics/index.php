@@ -41,7 +41,7 @@ The template /views/basics/simple.php looks like this:
 <pre>
 public function show($id)
 {
-  $this-&gtrenderText("Showing ".$id."  Try changing the number 44 in the URL to the word test");
+  $this-&gt;renderText("Showing ".$id."  Try changing the number 44 in the URL to the word test");
 }
 </pre>
 <p>Specifying parameters is easy</p>

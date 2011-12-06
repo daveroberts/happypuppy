@@ -15,7 +15,7 @@ class Migrations
 	}
 	static function From1To2()
 	{
-		\HappyPuppy\DBMigration::CreateTable("scratch", "people", array("name"=>"string"));
+		\HappyPuppy\DBMigration::CreateTable("scratch", "people", array("name"=&gt;"string"));
 	}
 	static function From2To1()
 	{

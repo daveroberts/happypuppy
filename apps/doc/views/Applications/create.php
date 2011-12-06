@@ -40,7 +40,7 @@ namespace myapp;
 class HelloController extends \HappyPuppy\Controller
 {
 	public function world(){
-		$this->renderText("Hello World!");
+		$this-&gt;renderText("Hello World!");
 	}
 }
 

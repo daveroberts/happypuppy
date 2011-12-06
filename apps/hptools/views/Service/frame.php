@@ -10,7 +10,8 @@
 	}
 </script>
 </head>
-<frameset rows="200,*" frameborder="0" border="0" framespacing="0">
+<frameset rows="200,*" border="0" framespacing="0">
 	<frame name="menu" src="<?php echo $hpinfo_url ?>" marginheight="0" marginwidth="0" scrolling="auto" noresize>
 	<frame name="content" src="<?php echo $actual_url ?>" marginheight="0" marginwidth="0" scrolling="auto" noresize>
+</frameset>
 </html>

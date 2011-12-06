@@ -1,5 +1,6 @@
 <table>
 <thead>
+	<tr>
 		<th><?php echo $pg->colHeader("Name", "name") ?></th>
 		<th><?php echo $pg->colHeader("Price", "price") ?></th>
 	</tr>
