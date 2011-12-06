@@ -29,7 +29,7 @@
 <div id="flash" style="display:none;"><?php echo getflash() ?></div>
 <div>
 	<?= link_to("Article List", "/article/list") ?>
-	<? if (can("change", $article)): ?>
+	<? if (can("change", 'articles')): ?>
 		<?= link_to("New Article", "/article/new") ?>
 	<? endif; ?>
 </div>

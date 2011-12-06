@@ -5,12 +5,20 @@ class Article extends \HappyPuppy\Model
 {
 	function __construct(){
 		parent::__construct();
+		parent::has_many("links",
+			'',
+			'\wiki\ArticleLinks',
+			'article_links',
+			'from_article_id');
 	}
 
 	public function save()
 	{
 		$this->slug = sluggable($this->name);
-		return parent::save();
+		$result = parent::save();
+		$links = $this->getWikiLinks($this->body);
+		ArticleLinks::SaveLinks($this, $links);
+		return $result;
 	}
 
 	public function getHTML()
@@ -20,13 +28,36 @@ class Article extends \HappyPuppy\Model
 		$html = markdown($html);
 		return $html;
 	}
+	
+	private function getWikiLinks($text)
+	{
+		$pattern = '/\[\[(.*?)\]\]/';
+		$matches = array();
+		preg_match_all($pattern, $text, $matches);
+		$links = array();
+		foreach($matches[1] as $key=>$match)
+		{
+			$link_text = trim($match);
+			$link_url = trim($match);
+			$pipe_pos = strpos($match, "|");
+			if ($pipe_pos)
+			{
+				$link_text = trim(substr($match, 0, $pipe_pos));
+				$link_url = trim(substr($match, $pipe_pos + 1));
+			}
+			if (!in_array($link_url, $links))
+			{
+				$links[] = $link_url;
+			}
+		}
+		return $links;
+	}
 
 	private function makeWikiLinks($text)
 	{
 		$pattern = '/\[\[(.*?)\]\]/';
 		$matches = array();
 		preg_match_all($pattern, $text, $matches);
-		$links = array();
 		$html = $text;
 		foreach($matches[1] as $key=>$match)
 		{
@@ -41,6 +72,16 @@ class Article extends \HappyPuppy\Model
 			$html = str_replace($matches[0][$key], \link_to($link_text, "/article/show/".sluggable($link_url)."?name=".$link_text), $html);
 		}
 		return $html;
+	}
+	
+	public function getLinkedFrom()
+	{
+		$sql = "SELECT a.* FROM article a
+				LEFT JOIN article_links al on a.id = al.from_article_id
+				WHERE al.to_article = ?";
+		$params = $this->slug;
+		$articles = Article::FindBySQL($sql, $params);
+		return $articles;
 	}
 
 	public function __get($name)

@@ -12,12 +12,29 @@ class Migrations
 	}
 	static function From1To2()
 	{
-		\HappyPuppy\DBMigration::CreateTable("wiki", "article", array("name"=>"string", "slug"=>"string", "body"=>"text"));
-		\HappyPuppy\DBMigration::CreateTable("wiki", "article_links", array("from_article_id"=>"int", "to_article_id"=>"int"));
-		\HappyPuppy\DBMigration::CreateTable("wiki", "user", array("name"=>"string", "password"=>"string"));
-		\HappyPuppy\DBMigration::CreateTable("wiki", "account", array("username"=>"string", "password"=>"string"));
+		\HappyPuppy\DBMigration::CreateTable("wiki",
+			"article", array(
+				"name"=>"string",
+				"slug"=>"string",
+				"body"=>"text"));
+		\HappyPuppy\DBMigration::CreateTable("wiki",
+			"article_links", array(
+				"from_article_id"=>"int",
+				"to_article"=>"string"));
+		\HappyPuppy\DBMigration::CreateTable("wiki",
+			"user", array(
+				"name"=>"string",
+				"password"=>"string"));
+		\HappyPuppy\DBMigration::CreateTable("wiki",
+			"account", array(
+			"username"=>"string",
+			"password"=>"string"));
 		\HappyPuppy\DB::AppExec("wiki", "INSERT INTO account (username, password) VALUES('dave', '1e56cd765cc9192c914aa39f21e2f91d593bffbe');");
-		\HappyPuppy\DBMigration::CreateTable("wiki", "blogpost", array("name"=>"string", "body"=>"text", 'written_on'=>"datetime"));
+		\HappyPuppy\DBMigration::CreateTable("wiki",
+			"blogpost", array(
+				"name"=>"string",
+				"body"=>"text",
+				'written_on'=>"datetime"));
 	}
 	static function From2To1()
 	{

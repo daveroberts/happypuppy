@@ -32,7 +32,12 @@ class ArticleController extends \HappyPuppy\Controller
 	{
 		$article = new Article();
 		$article->build($_POST["Article"]);
-		$article->save();
+		$result = $article->save();
+		if (!$result)
+		{
+			setflash("Error creating article");
+			$this->redirectTo("/article/show/".$article->slug);
+		}
 		setflash("Article created");
 		$this->redirectTo("/article/show/".$article->name);
 	}
@@ -112,7 +117,7 @@ class ArticleController extends \HappyPuppy\Controller
 		}
 		else
 		{
-			$this->article->destroy();
+			$this->article->destroy(true);
 			setflash($name." delted");
 			$this->redirectTo("/article/list");
 		}
