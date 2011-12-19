@@ -10,7 +10,7 @@
 	<tbody>
 		<? foreach($rooms as $room): ?>
 			<tr>
-				<td><?= $room->number ?></td>
+				<td><?= link_to($room->number, "/room/show/".$room->id) ?></td>
 				<td><?= $room->code ?></td>
 				<td><?= $room->type->name ?></td>
 				<td><? if ($room->available){ echo "Yes"; } else { echo "No"; } ?></td>

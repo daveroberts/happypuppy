@@ -10,6 +10,14 @@ class Room extends \HappyPuppy\Model
 		parent::belongs_to("type");
 	}
 
+	public function getUpgradableRooms()
+	{
+		$rooms = Room::Find(
+			array("hotel_id = ? AND type_id > ? AND available = 1",
+			$this->hotel_id, $this->type_id));
+		return $rooms;
+	}
+
 	public function bless($current_user, $action, &$reason)
 	{
 		if (strcmp($action, 'change') == 0)
