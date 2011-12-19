@@ -23,6 +23,10 @@ function can($action, $object=null, &$reason="")
 		$klass = ucwords($klass);
 		//$klass = __NAMESPACE__ . '\\' . $klass;
 		$klass = $_ENV["app"]->name . '\\' . $klass;
+		if (!class_exists($klass))
+		{
+			throw new \Exception("Could not find class: ".$klass);
+		}
 		$obj = new $klass();
 		if (!method_exists($obj, "bless"))
 		{
@@ -72,3 +76,4 @@ function cant($action, $object=null, &$reason="")
 {
 	return !can($action, $object, $reason);
 }
+
