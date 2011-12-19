@@ -16,7 +16,6 @@ class HotelController extends \HappyPuppy\Controller
 	function _list()
 	{
 		$this->hotels = Hotel::All();
-		$this->rooms = Room::All();
 	}
 
 	function show($id)

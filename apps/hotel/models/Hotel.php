@@ -8,6 +8,20 @@ class Hotel extends \HappyPuppy\Model
 		parent::__construct();
 		parent::has_many("rooms");
 	}
+	
+	function __get($name)
+	{
+		if (strcmp($name, 'available_rooms') == 0)
+		{
+			$q = new \HappyPuppy\SQLBuilder();
+			$q->from("room");
+			$q->where("hotel_id = ?");
+			$q->where("available = 1");
+			$rooms = Room::FindBySQL($q->toString(), $this->id);
+			return $rooms;
+		}
+		return parent::__get($name);
+	}
 
 	public function bless($current_user, $action, &$reason)
 	{
