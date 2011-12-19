@@ -37,6 +37,7 @@ class Migrations
 	{
 		\HappyPuppy\DBMigration::DropTable("hotel", "hotel");
 		\HappyPuppy\DBMigration::DropTable("hotel", "room");
+		\HappyPuppy\DBMigration::DropTable("hotel", "type");
 		\HappyPuppy\DBMigration::DropTable("hotel", "account");
 	}
 }
