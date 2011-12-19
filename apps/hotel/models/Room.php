@@ -9,15 +9,34 @@ class Room extends \HappyPuppy\Model
 		parent::belongs_to("hotel");
 		parent::belongs_to("type");
 	}
+	
+	function __get($name)
+	{
+		if (strcmp($name, 'available_string') == 0)
+		{
+			if ($this->available)
+			{
+				return "Yes";
+			}
+			else
+			{
+				return "No";
+			}
+		}
+		return parent::__get($name);
+	}
 
 	public function getUpgradableRooms()
 	{
-		$rooms = Room::Find(
-			array("hotel_id = ? AND type_id > ? AND available = 1",
-			$this->hotel_id, $this->type_id));
+		$q = new \HappyPuppy\SQLBuilder();
+		$q->from("room");
+		$q->where("hotel_id = ?");
+		$q->where("type_id > ?");
+		$q->where("available = 1");
+		$rooms = Room::FindBySQL($q->toString(), $this->hotel_id, $this->type_id);
 		return $rooms;
 	}
-
+	
 	public function bless($current_user, $action, &$reason)
 	{
 		if (strcmp($action, 'change') == 0)
@@ -36,14 +55,13 @@ class Room extends \HappyPuppy\Model
 		return $this->bless($current_user, $action, $reason);
 	}
 
-	public static function GenerateRooms($number)
+	public static function Generate($number)
 	{
-		$hotel_id = 1;
+		$num_hotels = Hotel::Count();
 		for($x = 0; $x < $number; $x++)
 		{
 			$r = new Room();
-			$r->hotel_id = $hotel_id;
-			if ($hotel_id == 1) { $hotel_id = 2; } else { $hotel_id = 1; }
+			$r->hotel_id = rand(1, $num_hotels);
 			$r->number = rand(100, 999);
 			$r->code = Room::Rand_str(16);
 			$r->type_id = rand(1,4);

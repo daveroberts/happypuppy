@@ -26,6 +26,19 @@ class Hotel extends \HappyPuppy\Model
 	{
 		return $this->bless($current_user, $action, $reason);
 	}
+	
+	public static function Generate()
+	{
+		$hotel_names = array("Watergate", "Sandgate", "Taj Mahal", "Venetian",
+			"MGM Grand", "Casino Royale", "Luxor");
+		foreach($hotel_names as $hotel_name)
+		{
+			$h = new Hotel();
+			$h->name = $hotel_name;
+			$h->save();
+		}
+		Room::Generate(count($hotel_names) * 100);
+	}
 }
 
 ?>

@@ -17,10 +17,6 @@ class HotelController extends \HappyPuppy\Controller
 	{
 		$this->hotels = Hotel::All();
 		$this->rooms = Room::All();
-		if (count($this->rooms) == 0)
-		{
-			Room::GenerateRooms(60);
-		}
 	}
 
 	function show($id)
