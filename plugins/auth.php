@@ -1,4 +1,4 @@
-<?
+<?php
 
 function logged_in()
 {

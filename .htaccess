@@ -1,7 +1,3 @@
-<DirectoryMatch .*\.git/.*>
-    Deny From All
-</DirectoryMatch>
-
 <IfModule mod_rewrite.c>
   RewriteEngine On
 

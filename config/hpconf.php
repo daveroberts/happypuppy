@@ -4,7 +4,7 @@ namespace HappyPuppy;
 
 	// Only apps listed here will be processed by Happy Puppy
 	// Note that hptools will only work when the environment is set to Dev
-	//$_ENV["config"]["apps"] = array("hptools", "doc", "sample", "games", "scratch", "wiki");
+	$_ENV["config"]["apps"] = array("hptools", "doc", "sample", "games", "scratch", "wiki");
 
 	// routes normally look like http://hostname/appname/controller/action
 	// setting this removes the appname http://hostname/appname/controller/action
