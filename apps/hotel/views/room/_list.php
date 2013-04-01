@@ -10,7 +10,7 @@
 		</tr>
 	</thead>
 	<tbody>
-		<? foreach($rooms as $room): ?>
+		<?php foreach($rooms as $room): ?>
 			<tr>
 				<td><?= link_to($room->hotel->name, "/hotel/show/".$room->hotel_id) ?></td>
 				<td><?= link_to($room->number, "/room/show/".$room->id) ?></td>
@@ -19,6 +19,6 @@
 				<td><?= $room->available_string ?></td>
 				<td>$<?= $room->type->price ?></td>
 			</tr>
-		<? endforeach; ?>
+		<?php endforeach; ?>
 	</tbody>
 </table>
