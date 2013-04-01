@@ -11,14 +11,21 @@ class PeopleController extends \HappyPuppy\ResourceController
 	}
 	function create()
 	{
+		header('HTTP/1.0 201 Created', true, 201);
+		$this->XSFRToken = md5('mysalt-8fhgns9984sndsg984jdsg848jsdg'.md5(session_id()));
+		$given_token = getallheaders()['X-XSRF-TOKEN'];
+		$post = print_r($_POST, true);
+		$this->renderJSON($post);
+		return;
 		//$this->person = Person::BuildFromPost($_POST["Person"]);
 		//$success = $this->person->save($error);
-		$success = false;
+		$success = true;
 		if ($success)
 		{
 			switch (http_accept()) {
 				case 'json':
-					// return 201: Created
+					header('HTTP/1.0 201 Created', true, 201);
+					$this->renderJSON('{"id":999,"name":"'.'fakename'.'"}');
 					break;
 				case 'html':
 					setflash("Person saved successfully");
@@ -31,7 +38,7 @@ class PeopleController extends \HappyPuppy\ResourceController
 			switch (http_accept()) {
 				case 'json':
 					header('HTTP/1.0 400 Bad Request', true, 400);
-					//print('[{"one':'two'},{'three':'four'}]");
+					$this->renderJSON('{"name":"username already taken"}');
 					break;
 				case 'html':
 					//setflash("Could not save person");
@@ -66,6 +73,8 @@ class PeopleController extends \HappyPuppy\ResourceController
 	}
 	function show($id)
 	{
+		$this->XSFRToken = md5('mysalt-8fhgns9984sndsg984jdsg848jsdg'.md5(session_id()));
+		setcookie('XSRF-TOKEN', $this->XSFRToken);
 		switch (http_accept()) {
 			case 'json':
 				
