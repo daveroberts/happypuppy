@@ -7,6 +7,7 @@
 				<th class="apptable_route">Route</th>
 				<th class="apptable_controller">Controller</th>
 				<th class="apptable_action">Action</th>
+				<th class="apptable_method">Method</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -15,6 +16,7 @@
 			<td><?php echo link_to_hpurl($route->GetRouteString(), $route->GetRouteString()); ?></td>
 			<td><?php echo $route->controller?></td>
 			<td><?php echo $route->action?></td>
+			<td><?= $route->method?></td>
 		</tr>
 	<?php endforeach; ?>
 		</tbody>
